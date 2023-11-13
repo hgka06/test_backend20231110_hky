@@ -2,7 +2,7 @@ package com.hk.calboard.controller;
 
 public class TestController {
 	public String testMain() {
-		System.out.println("한정아 바보");
+		System.out.println("서연아 내가 미안해!!!!!!!!!!!!!!!");
 		return "test";
 	}
 }
