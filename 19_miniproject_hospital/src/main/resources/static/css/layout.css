@@ -24,9 +24,9 @@
    }
  
  
- .footer{ 
-	bottom: 0px;
-	position: absolute;
-	height: 10rem;
-	background: yellow;
+footer {
+    position: absolute; 
+    bottom: 0px;
+    left: 0px;
+    right:0px;
 }
