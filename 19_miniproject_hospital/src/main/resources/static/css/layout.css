@@ -23,13 +23,9 @@
    color : red;
    }
  
-#wrapper{
-  height: auto;
-  min-height: 100%;
-  padding-bottom: (footer높이);
-}
-.footer{
-  height: 70px;
-  position : relative;
-  transform : translateY(-100%);
+#footer{
+	color: black;
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
 }
