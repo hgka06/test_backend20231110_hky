@@ -17,6 +17,8 @@ import com.hk.board.command.AddUserCommand;
 import com.hk.board.command.LoginCommand;
 import com.hk.board.service.MemberService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 
 @Controller
 @RequestMapping(value = "/user")
@@ -72,13 +74,27 @@ public class MemberController {
    }
    
    
-   
-   
    //로그인 폼 이동
    @GetMapping(value = "/login")
    public String loginForm(Model model) {
       model.addAttribute("loginCommand", new LoginCommand());
       return "member/login";
+   }
+   
+ //로그인 실행
+   @PostMapping(value = "/login")
+   public String login(@Validated LoginCommand loginCommand
+                    ,BindingResult result
+                    ,Model model
+                    ,HttpServletRequest request) {
+      if(result.hasErrors()) {
+         System.out.println("로그인 유효값 오류");
+         return "member/login";
+      }
+      
+      String path=memberService.login(loginCommand, request, model);
+      
+      return path;
    }
    
 }
