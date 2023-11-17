@@ -8,7 +8,7 @@ public class AddUserCommand {
 	private String name;
 	
 	@NotBlank(message = "전화번호를 입력하세요")
-	private String num;
+	private int num;
 
     @NotBlank(message = "아이디를 입력하세요")
     private String id;
@@ -21,7 +21,7 @@ public class AddUserCommand {
       // TODO Auto-generated constructor stub
    }
 
-	public AddUserCommand(@NotBlank(message = "이름을 입력하세요") String name, @NotBlank(message = "전화번호를 입력하세요") String num,
+	public AddUserCommand(@NotBlank(message = "이름을 입력하세요") String name, @NotBlank(message = "전화번호를 입력하세요") int num,
 			@NotBlank(message = "아이디를 입력하세요") String id, @NotBlank(message = "비밀번호를 입력하세요") String password) {
 		super();
 		this.name = name;
@@ -38,11 +38,11 @@ public class AddUserCommand {
 		this.name = name;
 	}
 
-	public String getNum() {
+	public int getNum() {
 		return num;
 	}
 
-	public void setNum(String num) {
+	public void setNum(int num) {
 		this.num = num;
 	}
 
