@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+
+.test{
+	margin-top: 25px; 
+	margin-left : 1300px;
+	
+	}
+
+
+.btn{
+	margin : 3px;
+}
+
+.hos{
+
+	height:480px; 
+	width : 1500px;
+	
+}
+
+
+.errorField{
+   color : red;
+   }
