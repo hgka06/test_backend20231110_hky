@@ -23,9 +23,11 @@
    color : red;
    }
  
-#footer{
-	color: black;
-	line-height: 50px;
-	height: 50px;
-	text-align: center;
+footer{
+  height: 60px;
+  position : absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  
 }
