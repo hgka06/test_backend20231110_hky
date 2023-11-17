@@ -30,6 +30,7 @@ public class MemberService {
       MemberDto mdto=new MemberDto();
       mdto.setId(addUserCommand.getId());
       mdto.setName(addUserCommand.getName());
+      mdto.setNumber(addUserCommand.getNum());;
       
       //password 암호화하여 저장하자
       mdto.setPassword(passwordEncoder.encode(addUserCommand.getPassword()));
