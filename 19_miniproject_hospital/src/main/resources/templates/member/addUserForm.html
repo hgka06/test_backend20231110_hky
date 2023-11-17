@@ -74,9 +74,7 @@
          </tr>
          <tr>
             <th>전화번호:</th>
-            <td>
-            <!--type 바꿔야하나?-->
-               <input th:field="*{num}" type="text" class="form-control" name="num"/>
+            <input th:field="*{num}" type="text" class="form-control" name="num"/>
                <span th:if="${#fields.hasErrors('num')}" th:errors="*{num}" ></span>
             </td>
          </tr>
