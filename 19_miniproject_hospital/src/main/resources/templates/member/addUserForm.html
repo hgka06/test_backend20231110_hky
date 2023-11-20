@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{layouts/layout2}"
 
     >
 <head>
@@ -45,15 +46,7 @@
       });
    });
    
-   //중복된 아이디로 submit할 경우 처리
-   function submitChk(){
-      var classValue=$("#idChk").attr("class");
-      if(classValue == "n"){
-         alert("아이디를 확인하세요");
-         return false;
-      } 
-      return true;
-   }
+
 </script>
 <style type="text/css">
 
@@ -62,47 +55,35 @@
 <body>
 <div layout:fragment="content">
 <div id="container">
-
+</br></br></br></br></br></br>
+<h1 style="text-align:center;">계정을 생성하세요.</h1>
    <form onsubmit="return submitChk()" action="/user/addUser" method="post" th:object="${addUserCommand}">
-      <table class="table">
-      	<tr>
-            <th>이름:</th>
-            <td>
-               <input th:field="*{name}" type="text" class="form-control" name="name"/>
-               <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></span>
-            </td>
-         </tr>
-         <tr>
-            <th>전화번호:</th>
-            <td>
-            	<input th:field="*{num}" type="text" class="form-control" name="num"/>
-               <span th:if="${#fields.hasErrors('num')}" th:errors="*{num}" ></span>
-            </td>
-         </tr>
-         <tr>
-            <th>아이디:</th>
-            <td>
-               <input th:field="*{id}" type="text" class="form-control" name="id"/>
+      <table class="table"> 
+      </br>
+      <div class = "why" >
+               <input style = "height:50px;" th:field="*{name}" type="text" class="form-control" name="name" placeholder="이름을 입력해주세요."/>
+               <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></span> 
+          <!--  <th>전화번호:</th>-->
+         </br>
+            	<input style = "height:50px;" th:field="*{num}" type="text" class="form-control" name="num" placeholder="전화번호를 입력해주세요."/>
+               <span style = " text-align: center; " th:if="${#fields.hasErrors('num')}" th:errors="*{num}" ></span>
+
+        <!--    <th>아이디:</th>-->
+         </br>
+               <input style = "height:50px;"  th:field="*{id}" type="text" class="form-control" name="id" placeholder="아이디를 입력해주세요."/>
                <span id="idChk" class="n"></span>
                <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" ></span>
-            </td>
-         </tr>
+          </br> 
+         <!--   <th>비밀번호:</th>-->
          
-         <tr>
-            <th>비밀번호:</th>
-            <td>
-               <input th:field="*{password}" type="password" class="form-control" name="password"/>
+               <input style = "height:50px;" th:field="*{password}" type="password" class="form-control" name="password"  placeholder="비밀번호를 입력해주세요."/>
                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></span>
-            </td>
-         </tr>
-         
-         <tr>
-            <td colspan="2">
-               <input type="submit" value="회원가입" class="btn" />
-               <br/>
-               <input type="button" th:onclick="|location.href='@{/user/login}'|" value="계정이 있으신가요? 로그인하기" class="btn" />
-            </td>
-         </tr>
+        </br>
+           
+               <input style = " width:350px; height:50px; " type="submit" value="회원가입" class="btn" />
+               <br/><br/>
+               <a style = "font-size:15px;  " href="/user/login">계정이 있으신가요? 로그인하기</a>
+        
          
       </table>
    </form>
