@@ -14,7 +14,13 @@
    width: 200px;
    height: 200px;
    margin: auto;
-}   
+} 
+#div{
+   
+   width: 500px;
+   margin: 0 auto;
+   font-size:12px;
+}  
 
 </style>
 </head>
@@ -25,7 +31,7 @@
 <h1 style="text-align:center;">로그인을 진행해주세요</h1>
 <form action="/user/login" method="post" th:object="${loginCommand}">
 
-   <div>      
+   <div id="login">      
       <div id="inputcontainer" class="input-group"
           style="margin-top: 40px">
          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

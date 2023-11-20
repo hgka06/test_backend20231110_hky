@@ -43,7 +43,7 @@ public class CalController {
       System.out.println("달력보기");
       
       //달력에서 일일별 일정목록 구하기
-      String id = "kbj"; // 나중에 세션에서 가져온 아이디 사용     
+      String id = "123"; // 나중에 세션에서 가져온 아이디 사용     
        String year = request.getParameter("year");
        String month = request.getParameter("month");   
          
@@ -70,7 +70,7 @@ public class CalController {
       System.out.println(insertCalCommand);
       //addCalBoardfForm 페이지에서 유효값 처리를 위해 insertCalCommand 받고 있기때문에
       model.addAttribute("insertCalCommand", insertCalCommand);
-      return "thymeleaf/calboard/addCalBoardForm";
+      return "templates/calboard/addCalBoardForm";
    }
    
    @PostMapping(value = "/addCalBoard")
@@ -80,7 +80,7 @@ public class CalController {
       System.out.println(insertCalCommand);
       if(result.hasErrors()) {
          System.out.println("글을 모두 입력해야 함");
-         return "thymeleaf/calboard/addCalBoardForm";
+         return "templates/calboard/addCalBoardForm";
       }
       
       calService.insertCalBoard(insertCalCommand);
@@ -96,7 +96,7 @@ public class CalController {
       logger.info("일정목록보기");
 //      HttpSession session=request.getSession();
 //      String id=session.getAttribute("id");
-      String id="kbj";//임시로 id 저장
+      String id="123";//임시로 id 저장
       
       //command 유효값 처리를 위해 기본 생성해서 보내줌
       model.addAttribute("deleteCalCommand", new DeleteCalCommand());
@@ -119,7 +119,7 @@ public class CalController {
       List<CalDto> list= calService.calBoardList(id, yyyyMMdd);
       model.addAttribute("list", list);
       
-      return "thymeleaf/calboard/calBoardList";
+      return "templates/calboard/calBoardList";
    }
    
    @PostMapping(value = "/calMulDel")
@@ -133,7 +133,7 @@ public class CalController {
          
          HttpSession session=request.getSession();
 //         String id=session.getAttribute("id");
-         String id="kbj";//임시로 id 저장
+         String id="123";//임시로 id 저장
          
          //session에 저장된 ymd 값은 목록 조회할때 추가되는 코드임
          Map<String, String>map=(Map<String, String>)session.getAttribute("ymdMap");
@@ -144,7 +144,7 @@ public class CalController {
                       +Util.isTwo(map.get("date"));
          List<CalDto> list= calService.calBoardList(id, yyyyMMdd);
          model.addAttribute("list", list);
-         return "thymeleaf/calboard/calBoardList";
+         return "templates/calboard/calBoardList";
       }
       Map<String,String[]>map=new HashMap<>();
       map.put("seqs", deleteCalCommand.getSeq());
@@ -185,7 +185,7 @@ public class CalController {
                 .setMin(Integer.parseInt(dto.getMdate().substring(10)));
       model.addAttribute("updateCalCommand", updateCalCommand);
       
-      return "thymeleaf/calboard/calBoardDetail";
+      return "templates/calboard/calBoardDetail";
    }
    
    @PostMapping(value = "/calBoardUpdate")
@@ -209,7 +209,7 @@ public class CalController {
    public Map<String, Integer> calCountAjax(String yyyyMMdd){
       logger.info("일정개수");
       Map<String, Integer>map=new HashMap<>();
-      String id="hdb";
+      String id="123";
       int count=calService.calBoardCount(id, yyyyMMdd);
       map.put("count", count);
       return map;
