@@ -24,6 +24,13 @@
    <img class="hos" th:src="@{/img/병원.png}" />
 
 </th:block>
+<th:block th:unless="${session.mdto==null}">
+   <p>
+      <span th:text="${session.mdto.id}" ></span>
+ 	  <th>님 안녕하세요!</th>
+      <a href="/user/logout">로그아웃</a>
+   </p>
+</th:block>
 </div>
 
 </body>
