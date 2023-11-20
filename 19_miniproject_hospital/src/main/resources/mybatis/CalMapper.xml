@@ -8,7 +8,7 @@
    </insert>
  
     <select id="calBoardList" parameterType="Map" resultType="CalDto">
-       SELECT checkid, id, title, content, mdate, regdate
+      SELECT checkid, id, title, content, mdate, regdate
       FROM checkinfo
       WHERE SUBSTRING(mdate,1,8) = #{yyyyMMdd}
       AND id = #{id}

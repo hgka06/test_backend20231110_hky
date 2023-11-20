@@ -70,7 +70,7 @@ public class CalController {
       System.out.println(insertCalCommand);
       //addCalBoardfForm 페이지에서 유효값 처리를 위해 insertCalCommand 받고 있기때문에
       model.addAttribute("insertCalCommand", insertCalCommand);
-      return "templates/calboard/addCalBoardForm";
+      return "/calboard/addCalBoardForm";
    }
    
    @PostMapping(value = "/addCalBoard")
@@ -80,7 +80,7 @@ public class CalController {
       System.out.println(insertCalCommand);
       if(result.hasErrors()) {
          System.out.println("글을 모두 입력해야 함");
-         return "templates/calboard/addCalBoardForm";
+         return "/calboard/addCalBoardForm";
       }
       
       calService.insertCalBoard(insertCalCommand);
@@ -119,7 +119,7 @@ public class CalController {
       List<CalDto> list= calService.calBoardList(id, yyyyMMdd);
       model.addAttribute("list", list);
       
-      return "templates/calboard/calBoardList";
+      return "/calboard/calBoardList";
    }
    
    @PostMapping(value = "/calMulDel")
@@ -144,7 +144,7 @@ public class CalController {
                       +Util.isTwo(map.get("date"));
          List<CalDto> list= calService.calBoardList(id, yyyyMMdd);
          model.addAttribute("list", list);
-         return "templates/calboard/calBoardList";
+         return "/calboard/calBoardList";
       }
       Map<String,String[]>map=new HashMap<>();
       map.put("seqs", deleteCalCommand.getSeq());
@@ -185,7 +185,7 @@ public class CalController {
                 .setMin(Integer.parseInt(dto.getMdate().substring(10)));
       model.addAttribute("updateCalCommand", updateCalCommand);
       
-      return "templates/calboard/calBoardDetail";
+      return "/calboard/calBoardDetail";
    }
    
    @PostMapping(value = "/calBoardUpdate")
@@ -196,7 +196,7 @@ public class CalController {
       
       if(result.hasErrors()) {
          System.out.println("수정할 목록을 확인하세요");
-         return "thymeleaf/calboard/calBoardDetail";
+         return "/calboard/calBoardDetail";
       }
       
       calService.calBoardUpdate(updateCalCommand);
