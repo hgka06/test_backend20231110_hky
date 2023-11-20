@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
      layout:decorate="~{layouts/layout}"
  >
 <head>
@@ -25,10 +25,27 @@
 
 </th:block>
 <th:block th:unless="${session.mdto==null}">
+<<<<<<< HEAD
    <p class="test"><b>
       <span th:text="${session.mdto.id}"></b></span>
  	  <th>님 안녕하세요!</th><br/>
+=======
+   <p class="test2"><b>
+      <span th:text="${session.mdto.name}"></b></span>
+      <th>님 안녕하세요!</th><br/>
+>>>>>>> branch 'main' of https://github.com/hgka06/test_backend20231110_hky.git
       <a href="/user/logout">로그아웃</a>
+   </p>
+   
+   <p class = "test3">      
+      <button type="button" class = "b">
+      <img class="ch" th:src="@{/img/check.png}" />
+      진료 예약
+      </button>
+      <button type="button" class = "b" th:onclick="|location.href='@{/board/boardList}'|" >
+      <img class="ch" th:src="@{/img/8answer_icon.png}" />
+      문의 하기
+      </button>
    </p>
 </th:block>
 </div>
