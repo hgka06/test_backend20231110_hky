@@ -23,9 +23,9 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping(value = "/user")
 public class MemberController {
-	
-	@Autowired
-	private MemberService memberService;
+   
+   @Autowired
+   private MemberService memberService;
    
    @GetMapping(value = "/addUser")
    public String addUserForm(Model model) {
@@ -95,6 +95,13 @@ public class MemberController {
       String path=memberService.login(loginCommand, request, model);
       
       return path;
+   }
+   
+   @GetMapping(value="/logout")
+   public String logout(HttpServletRequest request) {
+      System.out.println("로그아웃");
+      request.getSession().invalidate();
+      return "redirect:/";
    }
    
 }

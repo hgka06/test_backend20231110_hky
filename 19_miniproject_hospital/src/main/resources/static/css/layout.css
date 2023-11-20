@@ -7,15 +7,51 @@
 	
 	}
 
+.test2{
+	margin-top: 25px; 
+	margin-left : 1350px;
+
+	}
+	
+.test2 a{
+	margin: 34px;
+	/*text-align : center;*/
+
+	}	
 
 .btn{
 	margin : 3px;
 }
 
+.b{
+	margin : 30px;
+	background-color: white; 
+	width:300px; 
+	height:130px
+
+}
+
+
+.test3 {
+	
+	margin-top : 100px;
+	margin-left:400px;
+	font-size:30px;
+
+	
+	}
+
 .hos{
 
 	height:480px; 
 	width : 1500px;
+	
+}
+
+.ch{
+	margin-right : 20px;
+	height:65px; 
+	width :65px;
 	
 }
 
@@ -31,3 +67,6 @@ footer{
   right: 0px;
   
 }
+
+
+

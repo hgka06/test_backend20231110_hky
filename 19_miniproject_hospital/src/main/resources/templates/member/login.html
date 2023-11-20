@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+     layout:decorate="~{layouts/layout2}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -9,46 +9,51 @@
 
 </script>
 <style type="text/css">
+.loginbutton{
+   width: 200px;
+   height: 200px;
+   margin: auto;
+}   
 
 </style>
 </head>
 <body>
 <div layout:fragment="content">
 <div id="container">
-<h1>로그인</h1>
+</br></br>
+<h1>로그인을 진행해주세요</h1>
 <form action="/user/login" method="post" th:object="${loginCommand}">
-	<table class="table">
-		<tr>
-			<th>아이디:</th>
-			<td>
-				<input type="text" class="form-control"
-				      name="id" th:field="*{id}" />
-				<span th:if="${#fields.hasErrors('id')}"
-				      th:errors="*{id}"></span>          
-			</td>
-		</tr>
-		<tr>
-			<th>패스워드:</th>
-			<td>
-				<input type="password" class="form-control"
-				      name="password" th:field="*{password}" />
-				<span th:if="${#fields.hasErrors('password')}"
-				      th:errors="*{password}"></span>      
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				  <input type="submit" value="로그인" class="btn"/>
-				  <span th:text="${msg}"></span> 
-			</td>
-		</tr>
-	</table>
+   <div>      
+      <div id="inputcontainer" class="input-group"
+          style="margin-top: 30px">
+         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input style="height:45px;" id="id" type="text"
+                class="form-control" name="id" placeholder="Username"/>   
+        </div>
+        <div style="text-align: center; margin-top:5px;" class="inputgroup">
+           <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
+      </div>
+        <div id="inputcontainer" class="input-group"
+            style="margin-top: 15px">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          <input style="height:45px;" id="password" type="password" class="form-control" name="password" placeholder="****">
+      </div>
+      <div style="text-align: center; margin-top:5px;" class="inputgroup">
+           <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+      </div>
+      
+      <div class="loginbutton">
+           <input style="width: 200px;" class="btn" type="submit" value="로그인"/></button>
+           <span th:text="${msg}"></span><br/>
+           <input style="width: 200px;" class="btn" type="button" th:onclick="|location.href='@{/user/addUser}'|" value="회원가입"/>
+         <span th:text="${msg}"></span>
+      </div>
+   </div>
 </form>
 </div>
 </div>
 </body>
 </html>
-
 
 
 
