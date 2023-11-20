@@ -29,5 +29,31 @@ footer{
   bottom: 0px;
   left: 0px;
   right: 0px;
-  
 }
+
+#container{
+	
+   width: 500px;
+   margin: 0 auto;
+   font-size:12px;
+   }
+   
+#inputcontainer{
+	height: 40px;
+	width: 330px;
+	margin: 0 auto;
+    font-size:12px;
+}
+
+#loginbutton{
+	height: 40px;
+	width: 30px;
+	margin: 0auto;
+    font-size:12px;
+}
+
+   
+   
+   
+   
+   
