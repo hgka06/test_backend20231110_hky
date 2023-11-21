@@ -6,8 +6,7 @@ import lombok.Data;
 
 @Data
 public class CalDto {
-	
-	private int checkid;
+	private int seq;
 	private String id;
 	private String title;
 	private String content;
@@ -19,22 +18,12 @@ public class CalDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CalDto(int checkid, String id, String title, String content, String mdate, Date regdate) {
-		super();
-		this.checkid = checkid;
-		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.mdate = mdate;
-		this.regdate = regdate;
+	public int getSeq() {
+		return seq;
 	}
 
-	public int getCheckid() {
-		return checkid;
-	}
-
-	public void setCheckid(int checkid) {
-		this.checkid = checkid;
+	public void setSeq(int seq) {
+		this.seq = seq;
 	}
 
 	public String getId() {
@@ -77,10 +66,11 @@ public class CalDto {
 		this.regdate = regdate;
 	}
 
+
 	@Override
 	public String toString() {
-		return "CalDto [checkid=" + checkid + ", id=" + id + ", title=" + title + ", content=" + content + ", mdate="
-				+ mdate + ", regdate=" + regdate + "]";
+		return "CalDto [seq=" + seq + ", id=" + id + ", title=" + title + ", content=" + content + ", mdate=" + mdate
+				+ ", regdate=" + regdate + "]";
 	}
 	
 	

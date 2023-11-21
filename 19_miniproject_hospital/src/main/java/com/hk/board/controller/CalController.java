@@ -170,7 +170,7 @@ public class CalController {
       CalDto dto=calService.calBoardDetail(seq);
       
       //dto ---> command
-      updateCalCommand.setSeq(dto.getCheckid());
+      updateCalCommand.setSeq(dto.getSeq());
       updateCalCommand.setTitle(dto.getTitle());
       updateCalCommand.setContent(dto.getContent());
       updateCalCommand

@@ -13,6 +13,7 @@ import com.hk.board.command.UpdateCalCommand;
 import com.hk.board.dtos.CalDto;
 import com.hk.board.mapper.CalMapper;
 import com.hk.board.utils.Util;
+import com.hk.board.service.ICalService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -69,7 +70,7 @@ public class CalServiceImp implements ICalService{
 	}
 	
 	@Override
-	public boolean insertCalBoard(InsertCalCommand insertCalCommand) {
+	public boolean insertCalBoard(InsertCalCommand insertCalCommand) throws Exception {
 		// command --> dto로  값을 이동
 		// DB에서는 mdate 컬럼 , command에서는 year, month... : 12자리로 변환작업
 		String mdate=insertCalCommand.getYear()
@@ -89,6 +90,10 @@ public class CalServiceImp implements ICalService{
 		
 		int count=calMapper.insertCalBoard(dto);
 		
+		
+		if(count>0) {
+			throw new Exception("트랜잭션 실행됨");
+		}
 		return count>0?true:false;
 	}
 
@@ -113,7 +118,7 @@ public class CalServiceImp implements ICalService{
 		
 		//dto <---command값
 		CalDto dto=new CalDto();
-		dto.setCheckid(updateCalCommand.getSeq());
+		dto.setSeq(updateCalCommand.getSeq());
 		dto.setTitle(updateCalCommand.getTitle());
 		dto.setContent(updateCalCommand.getContent());
 		dto.setMdate(mdate);
@@ -128,11 +133,13 @@ public class CalServiceImp implements ICalService{
 
 	@Override
 	public List<CalDto> calViewList(String id, String yyyyMM) {
+		// TODO Auto-generated method stub
 		return calMapper.calViewList(id, yyyyMM);
 	}
 
 	@Override
 	public int calBoardCount(String id, String yyyyMMdd) {
+		// TODO Auto-generated method stub
 		return calMapper.calBoardCount(id, yyyyMMdd);
 	}
 
