@@ -70,7 +70,7 @@ public class CalServiceImp implements ICalService{
 	}
 	
 	@Override
-	public boolean insertCalBoard(InsertCalCommand insertCalCommand) throws Exception {
+	public boolean insertCalBoard(InsertCalCommand insertCalCommand) {
 		// command --> dto로  값을 이동
 		// DB에서는 mdate 컬럼 , command에서는 year, month... : 12자리로 변환작업
 		String mdate=insertCalCommand.getYear()
@@ -90,10 +90,6 @@ public class CalServiceImp implements ICalService{
 		
 		int count=calMapper.insertCalBoard(dto);
 		
-		
-		if(count>0) {
-			throw new Exception("트랜잭션 실행됨");
-		}
 		return count>0?true:false;
 	}
 

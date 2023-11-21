@@ -21,11 +21,9 @@
 		<table class="table">
 			<tr>
 				<th>아이디</th>
-				<td>
-					<input type="text" name="id" th:field="*{id}"/>
-					<span class="errorField" th:if="${#fields.hasErrors('id')}" 
-											 th:errors="*{id}"></span>
-				</td>
+            	<td>
+            		<span th:text="${session.mdto.id}"></span>
+            	</td>
 			</tr>
 			<tr>
 				<th>일정</th>

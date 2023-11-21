@@ -24,6 +24,7 @@ import com.hk.board.command.UpdateCalCommand;
 import com.hk.board.dtos.CalDto;
 import com.hk.board.service.ICalService;
 import com.hk.board.utils.Util;
+import com.hk.board.controller.CalController;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -42,12 +43,12 @@ public class CalController {
       logger.info("달력보기"); 
       
       //달력에서 일일별 일정목록 구하기
-       String id = request.getParameter("id"); // 나중에 세션에서 가져온 아이디 사용     
+      String id = "123"; // 나중에 세션에서 가져온 아이디 사용     
        String year = request.getParameter("year");
        String month = request.getParameter("month");   
          
        if(year==null||month==null) {
-           Calendar cal = Calendar.getInstance();
+          Calendar cal = Calendar.getInstance();
            year = cal.get(Calendar.YEAR)+"";
            month = (cal.get(Calendar.MONTH)+1)+"";
          }
@@ -95,7 +96,7 @@ public class CalController {
       logger.info("일정목록보기");
 //      HttpSession session=request.getSession();
 //      String id=session.getAttribute("id");
-      String id="id";//임시로 id 저장
+      String id="123";//임시로 id 저장
       
       //command 유효값 처리를 위해 기본 생성해서 보내줌
       model.addAttribute("deleteCalCommand", new DeleteCalCommand());
@@ -132,7 +133,7 @@ public class CalController {
          
          HttpSession session=request.getSession();
 //         String id=session.getAttribute("id");
-         String id="id";//임시로 id 저장
+         String id="123";//임시로 id 저장
          
          //session에 저장된 ymd 값은 목록 조회할때 추가되는 코드임
          Map<String, String>map=(Map<String, String>)session.getAttribute("ymdMap");
@@ -146,7 +147,7 @@ public class CalController {
          return "/calboard/calBoardList";
       }
       Map<String,String[]>map=new HashMap<>();
-      map.put("checkid", deleteCalCommand.getSeq());
+      map.put("seqs", deleteCalCommand.getSeq());
       calService.calMulDel(map);
       
       return "redirect:/schedule/calBoardList";
@@ -208,7 +209,7 @@ public class CalController {
    public Map<String, Integer> calCountAjax(String yyyyMMdd){
       logger.info("일정개수");
       Map<String, Integer>map=new HashMap<>();
-      String id="id";
+      String id="123";
       int count=calService.calBoardCount(id, yyyyMMdd);
       map.put("count", count);
       return map;
