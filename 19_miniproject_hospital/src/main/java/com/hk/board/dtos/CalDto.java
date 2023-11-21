@@ -4,7 +4,6 @@ import java.sql.Date;
 
 import lombok.Data;
 
-@Data
 public class CalDto {
 	private int seq;
 	private String id;

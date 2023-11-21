@@ -113,11 +113,14 @@ public class CalController {
          session.setAttribute("ymdMap", map);
       }
       
+     
       //달력에서 전달받은 파라미터 year, month, date를 8자리로 만든다.
       String yyyyMMdd=map.get("year")
                    +Util.isTwo(map.get("month"))
                    +Util.isTwo(map.get("date"));
-      List<CalDto> list= calService.getAllList(yyyyMMdd);
+      List<CalDto> list= calService.calBoardList(yyyyMMdd);
+      System.out.println(list.size());
+      System.out.println(yyyyMMdd);
       model.addAttribute("list", list);
       
       return "/calboard/calBoardList";

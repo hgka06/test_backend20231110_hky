@@ -11,7 +11,7 @@
       SELECT seq, id, title, content, mdate, regdate
       FROM checkinfo
       WHERE SUBSTRING(mdate,1,8) = #{yyyyMMdd}
-      AND id = #{id}
+   
     </select>
    
    <select id="calBoardDetail" parameterType="int" resultType="CalDto">
