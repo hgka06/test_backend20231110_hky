@@ -147,7 +147,7 @@ public class CalController {
          return "/calboard/calBoardList";
       }
       Map<String,String[]>map=new HashMap<>();
-      map.put("seqs", deleteCalCommand.getSeq());
+      map.put("checkid", deleteCalCommand.getSeq());
       calService.calMulDel(map);
       
       return "redirect:/schedule/calBoardList";
