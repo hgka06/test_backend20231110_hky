@@ -21,9 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hk.board.command.DeleteCalCommand;
 import com.hk.board.command.InsertCalCommand;
 import com.hk.board.command.UpdateCalCommand;
+
 import com.hk.board.dtos.CalDto;
+
+
 import com.hk.board.service.ICalService;
 import com.hk.board.utils.Util;
+
 import com.hk.board.controller.CalController;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,12 +42,12 @@ public class CalController {
    @Autowired
    private ICalService calService;
    
+   
    @GetMapping(value="/calendar")
-   public String calendar(Model model, HttpServletRequest request) {
+   public String calendar( Model model, HttpServletRequest request) {
       logger.info("달력보기"); 
-      
-      //달력에서 일일별 일정목록 구하기
-      String id = "123"; // 나중에 세션에서 가져온 아이디 사용     
+    
+  
        String year = request.getParameter("year");
        String month = request.getParameter("month");   
          
@@ -54,7 +58,7 @@ public class CalController {
          }
       
        String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
-       List<CalDto>clist=calService.calViewList(id, yyyyMM);
+       List<CalDto>clist=calService.getAllList(yyyyMM);
        model.addAttribute("clist", clist);
       
       //달력만들기위한 값 구하기
@@ -94,16 +98,13 @@ public class CalController {
                      , HttpServletRequest request
                      , Model model) {
       logger.info("일정목록보기");
-//      HttpSession session=request.getSession();
-//      String id=session.getAttribute("id");
-      String id="123";//임시로 id 저장
-      
+    
       //command 유효값 처리를 위해 기본 생성해서 보내줌
       model.addAttribute("deleteCalCommand", new DeleteCalCommand());
       
       //일정목록을 조회할때마다 year, month, date를 세션에 저장
       HttpSession session=request.getSession();
-      
+
       if(map.get("year")==null) {
          //조회한 상태이기때문에 ymd가 저장되어 있어서 값을 가져옴
          map=(Map<String, String>)session.getAttribute("ymdMap");
@@ -112,11 +113,14 @@ public class CalController {
          session.setAttribute("ymdMap", map);
       }
       
+     
       //달력에서 전달받은 파라미터 year, month, date를 8자리로 만든다.
       String yyyyMMdd=map.get("year")
                    +Util.isTwo(map.get("month"))
                    +Util.isTwo(map.get("date"));
-      List<CalDto> list= calService.calBoardList(id, yyyyMMdd);
+      List<CalDto> list= calService.calBoardList(yyyyMMdd);
+      System.out.println(list.size());
+      System.out.println(yyyyMMdd);
       model.addAttribute("list", list);
       
       return "/calboard/calBoardList";
@@ -133,7 +137,7 @@ public class CalController {
          
          HttpSession session=request.getSession();
 //         String id=session.getAttribute("id");
-         String id="123";//임시로 id 저장
+         
          
          //session에 저장된 ymd 값은 목록 조회할때 추가되는 코드임
          Map<String, String>map=(Map<String, String>)session.getAttribute("ymdMap");
@@ -142,7 +146,7 @@ public class CalController {
          String yyyyMMdd=map.get("year")
                       +Util.isTwo(map.get("month"))
                       +Util.isTwo(map.get("date"));
-         List<CalDto> list= calService.calBoardList(id, yyyyMMdd);
+         List<CalDto> list= calService.getAllList(yyyyMMdd);
          model.addAttribute("list", list);
          return "/calboard/calBoardList";
       }
@@ -209,13 +213,12 @@ public class CalController {
    public Map<String, Integer> calCountAjax(String yyyyMMdd){
       logger.info("일정개수");
       Map<String, Integer>map=new HashMap<>();
-      String id="123";
-      int count=calService.calBoardCount(id, yyyyMMdd);
+     
+      int count=calService.calBoardCount(yyyyMMdd);
       map.put("count", count);
       return map;
    }
 }
-
 
 
 

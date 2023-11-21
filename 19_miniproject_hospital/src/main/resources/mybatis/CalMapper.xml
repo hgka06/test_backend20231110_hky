@@ -11,7 +11,7 @@
       SELECT seq, id, title, content, mdate, regdate
       FROM checkinfo
       WHERE SUBSTRING(mdate,1,8) = #{yyyyMMdd}
-      AND id = #{id}
+   
     </select>
    
    <select id="calBoardDetail" parameterType="int" resultType="CalDto">
@@ -42,9 +42,18 @@
       WHERE rn BETWEEN 1 AND 3
    </select>
    
+   <select id="getAllList" resultType="CalDto">
+      SELECT rn, seq, id, title, content, mdate, regdate
+         FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq, id,title,content, mdate, regdate
+         FROM checkinfo
+         WHERE SUBSTR(mdate,1,6)=#{yyyyMM}) cal
+      WHERE rn BETWEEN 1 AND 3
+   </select>
+  
+   
    <select id="calBoardCount" parameterType="Map" resultType="Integer">
       SELECT COUNT(*) FROM checkinfo
-      WHERE id = #{id} AND SUBSTR(mdate,1,8)=#{yyyyMMdd}
+      WHERE  SUBSTR(mdate,1,8)=#{yyyyMMdd}
    </select>
 </mapper>
 

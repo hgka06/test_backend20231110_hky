@@ -79,7 +79,7 @@
 	            	 	//aDate.after("<div class='cp'>"+data.count+"</div>");	 
 		            	 aDate.nextAll("a").eq(0).click(function(e){
 		            	 	//e.preventDefault();
-		            	 	alert("끝났어");
+		            	 	alert("예약 마감되었습니다.");
 		            	 	return false;
 		            	 });       	
 	            	 }
@@ -90,43 +90,7 @@
 	         });
 			}
       })
-    //  ,function(){
-    //  	$(".cp").remove(); // 마우스가 나갔을때
-     // });
    });
-			
-		
-		/*
-		$(".d").hover(function(){
-			//controller로 전달할 파라미터 yyyyMM를 구함
-			var aDate=$(this); // 현재 마우스가 올라간 a태그구함
-			var year = $(".y").text().trim(); // 년도
-			var month = $(".m").text().trim(); // 월
-			var date = aDate.text().trim(); // 일
-			var yyyyMMdd = year+(month.length<2?"0"+month:month) + (date.length<2?"0" + date:date); // 8자리 만들기
-			//alert(yyyyMMdd);
-			if(aDate.nextAll("p").length>0){
-				$.ajax({
-	            url:"/schedule/calCountAjax",
-	            method:"get",
-	            data:{"yyyyMMdd":yyyyMMdd},   //서버로 전달하는 값
-	            dataType:"json",   //서버에서 전달받은 데이터 타입
-	            async:false,   //ajax()메서드가 비동기로 실행되는것을 막음:false설정
-	            success:function(data){ //성공하면 데이터가 data변수에 저장됨
-	            //   alert(data.count);
-	            	 aDate.after("<div class='cp'>"+data.count+"</div>");
-	
-	            },
-	            error:function(){
-	               alert("통신실패");
-	            }
-	         });
-			}
-      },function(){
-      	$(".cp").remove(); // 마우스가 나갔을때
-      });
-      */
-//   });
 
 </script>
 </head>
