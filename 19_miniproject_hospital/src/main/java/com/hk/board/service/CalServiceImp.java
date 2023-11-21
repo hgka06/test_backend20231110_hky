@@ -13,6 +13,7 @@ import com.hk.board.command.UpdateCalCommand;
 import com.hk.board.dtos.CalDto;
 import com.hk.board.mapper.CalMapper;
 import com.hk.board.utils.Util;
+import com.hk.board.service.ICalService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -128,12 +129,22 @@ public class CalServiceImp implements ICalService{
 
    @Override
    public List<CalDto> calViewList(String id, String yyyyMM) {
+      // TODO Auto-generated method stub
       return calMapper.calViewList(id, yyyyMM);
    }
 
    @Override
-   public int calBoardCount(String id, String yyyyMMdd) {
-      return calMapper.calBoardCount(id, yyyyMMdd);
+   public int calBoardCount(String yyyyMMdd) {
+      // TODO Auto-generated method stub
+      return calMapper.calBoardCount(yyyyMMdd);
    }
+   
+  
+
+	@Override
+	public List<CalDto> getAllList(String yyyyMMdd) {
+		// TODO Auto-generated method stub
+		return calMapper.getAllList(yyyyMMdd);
+	}
 
 }

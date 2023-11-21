@@ -15,7 +15,7 @@
 	
 /*     날짜표현 div */
     .cal #tbody > div{
-    	height: 120px;
+    	height: 95px;
     	vertical-align: top;
     	border-top:1px solid gray;
     	position : relative;
@@ -85,7 +85,7 @@
 <div layout:fragment="content">
 	<div id="container">
 	
-		<!--<h1>예약하기</h1>-->
+<!--		<h1>예약하기</h1>-->
 		<div class="cal">
 			<div id="ctitle">
 				<a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">◁</a>

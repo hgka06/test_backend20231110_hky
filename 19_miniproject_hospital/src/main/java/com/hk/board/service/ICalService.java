@@ -27,7 +27,10 @@ public interface ICalService {
 	//한달의 일정보여주기
 	public List<CalDto> calViewList(String id, String yyyyMM);
 	//일일의 일정개수 보여주기
-	public int calBoardCount(String id,String yyyyMMdd);
+	public int calBoardCount(String yyyyMMdd);
+
+	public List<CalDto> getAllList(String yyyyMMdd);
+
 }
 
 
