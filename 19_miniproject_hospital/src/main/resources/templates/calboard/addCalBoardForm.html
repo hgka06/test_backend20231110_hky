@@ -16,16 +16,19 @@
 <div layout:fragment="content">
 <div id="container">
 	<h1>일정 추가하기</h1>
-	<form th:action="@{/schedule/addCalBoard}" method="post" 
-											   th:object="${insertCalCommand}">
+	<form th:action="@{/schedule/addCalBoard}" method="post" th:object="${insertCalCommand}">
+	
 		<table class="table">
 			<tr>
 				<th>아이디</th>
-				<td>
-					<input type="text" name="id" th:field="*{id}"/>
-					<span class="errorField" th:if="${#fields.hasErrors('id')}" 
-											 th:errors="*{id}"></span>
-				</td>
+            	<td>
+            	<td th:text="${@util.toString(dto.id)}"></td>
+            	
+	               <!--<input type="text" name="id" th:field="*{id}"/>-->
+	               <span class="errorField" th:if="${#fields.hasErrors('id')}" 
+	                                  th:errors="*{id}"></span>
+            	</td>
+				
 			</tr>
 			<tr>
 				<th>일정</th>
