@@ -26,20 +26,20 @@
 <form action="/board/mulDel" method="post" th:object="${delBoardCommand}">
    <table class="table">
       <tr>
-    
+    	<th>NO.</th>
+    	<th>제목</th>
          <th>작성자</th>
-         <th>제목</th>
-         <th>작성일</th>
+         <th>문의일</th>
+         <th>처리</th>
       </tr>
       <th:block th:if="${#lists.isEmpty(list)}">
          <tr>
-            <td colspan="4" style="text-align: center;" >---작성된 글이 없습니다.---</td>
+            <td colspan="5" style="text-align: center;" >---작성된 글이 없습니다.---</td>
          </tr>
       </th:block>
       <th:block th:unless="${#lists.isEmpty(list)}">
          <tr th:each="dto:${list}">
-            <td><input type="checkbox" name="seq" th:field="*{seq}"
-                                 th:value="${dto.board_seq}"/></td>
+            
             <td th:text="${dto.id}"></td>
             <td>
                <a th:href="@{/board/boardDetail(board_seq=${dto.board_seq})}"
@@ -47,15 +47,16 @@
             </td>
             <td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
          </tr>
-         <tr>
-            <td colspan="4">
+         
+      </th:block>
+      <tr>
+            <td colspan="5">
                <button type="button" class="btn" th:onclick = "|location.href='@{/board/boardInsert}'|">글추가</button>
                <button type="submit" class="btn">삭제</button>
                <span th:if="${#fields.hasErrors('seq')}"
                      th:errors="*{seq}"></span>
             </td>
          </tr>
-      </th:block>
    </table>
 </form>
 </div>
