@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
+	  layout:decorate="~{layouts/layout3}">
 <head>
 <meta charset="UTF-8">
 <title></title>
@@ -22,7 +22,9 @@
 			<tr>
 				<th>아이디</th>
             	<td>
-            		<span th:text="${session.mdto.id}"></span>
+               		<input type="text" name="id" th:field="*{id}"/>
+               		<span class="errorField" th:if="${#fields.hasErrors('id')}" 
+                                  th:errors="*{id}"></span>
             	</td>
 			</tr>
 			<tr>

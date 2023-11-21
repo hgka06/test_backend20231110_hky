@@ -67,6 +67,11 @@ footer{
   right: 0px;
 
 }
+header{
+	height:130px;
+	position : relative;
+	margin: 0 auto;
+}
 
 #container{
    
