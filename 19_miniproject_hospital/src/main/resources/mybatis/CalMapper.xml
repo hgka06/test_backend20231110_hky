@@ -8,35 +8,35 @@
    </insert>
  
     <select id="calBoardList" parameterType="Map" resultType="CalDto">
-      SELECT checkid, id, title, content, mdate, regdate
+      SELECT seq, id, title, content, mdate, regdate
       FROM checkinfo
       WHERE SUBSTRING(mdate,1,8) = #{yyyyMMdd}
       AND id = #{id}
     </select>
    
    <select id="calBoardDetail" parameterType="int" resultType="CalDto">
-      SELECT checkid,id,title,content,mdate,regdate
+      SELECT seq,id,title,content,mdate,regdate
       FROM checkinfo
-      WHERE checkid=#{checkid}
+      WHERE seq=#{seq}
    </select>
    
    <update id="calBoardUpdate" parameterType="CalDto">
       UPDATE checkinfo
       SET title= #{title}, content= #{content},
       mdate= #{mdate}, regdate=SYSDATE()
-      WHERE checkid= #{checkid}
+      WHERE seq= #{seq}
    </update>
    
    <delete id="calMulDel" parameterType="Map">
       DELETE FROM checkinfo WHERE checkid IN
       <foreach collection="seqs" item = "seq" open = "(" close = ")" separator=",">
-         #{checkid}
+         #{seq}
       </foreach>
    </delete>
 
    <select id="calViewList" parameterType="Map" resultType="CalDto">
-      SELECT rn, checkid, id, title, content, mdate, regdate
-         FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, checkid, id,title,content, mdate, regdate
+      SELECT rn, seq, id, title, content, mdate, regdate
+         FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq, id,title,content, mdate, regdate
          FROM checkinfo
          WHERE id = #{id} AND SUBSTR(mdate,1,6)=#{yyyyMM}) cal
       WHERE rn BETWEEN 1 AND 3
