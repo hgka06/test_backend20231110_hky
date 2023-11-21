@@ -40,15 +40,14 @@ public class CalController {
    @GetMapping(value="/calendar")
    public String calendar(Model model, HttpServletRequest request) {
       logger.info("달력보기"); 
-      System.out.println("달력보기");
       
       //달력에서 일일별 일정목록 구하기
-      String id = request.getParameter("id"); // 나중에 세션에서 가져온 아이디 사용     
+       String id = request.getParameter("id"); // 나중에 세션에서 가져온 아이디 사용     
        String year = request.getParameter("year");
        String month = request.getParameter("month");   
          
        if(year==null||month==null) {
-          Calendar cal = Calendar.getInstance();
+           Calendar cal = Calendar.getInstance();
            year = cal.get(Calendar.YEAR)+"";
            month = (cal.get(Calendar.MONTH)+1)+"";
          }
@@ -60,7 +59,7 @@ public class CalController {
       //달력만들기위한 값 구하기
       Map<String, Integer>map=calService.makeCalendar(request);
       model.addAttribute("calMap", map);
-      System.out.println("year:"+map.get("year"));
+      
       return "/calboard/calendar";
    }
    
@@ -215,7 +214,6 @@ public class CalController {
       return map;
    }
 }
-
 
 
 

@@ -21,7 +21,7 @@
 			<input type="hidden" name="seq" th:field="*{seq}"/>
 			<table class="table">
 				<tr>
-					<th>일정 상세보</th>
+					<th>일정 상세보기</th>
 					<td>
 						<select name="year">
 							<th:block th:each="i:${#numbers.sequence(updateCalCommand.year-5,updateCalCommand.year+5)}">

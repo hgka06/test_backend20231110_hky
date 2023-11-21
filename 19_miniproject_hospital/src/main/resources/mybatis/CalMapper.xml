@@ -33,7 +33,7 @@
          #{checkid}
       </foreach>
    </delete>
-   
+
    <select id="calViewList" parameterType="Map" resultType="CalDto">
       SELECT rn, checkid, id, title, content, mdate, regdate
          FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, checkid, id,title,content, mdate, regdate
