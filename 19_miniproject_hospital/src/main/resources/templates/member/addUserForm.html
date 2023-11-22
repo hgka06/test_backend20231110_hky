@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-     layout:decorate="~{layouts/layout2}"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{layouts/layout1}"
 
     >
 <head>
@@ -65,7 +65,7 @@
                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></span> 
           <!--  <th>전화번호:</th>-->
          </br>
-            	<input style = "height:50px;" th:field="*{num}" type="text" class="form-control" name="num" placeholder="전화번호를 입력해주세요."/>
+               <input style = "height:50px;" th:field="*{num}" type="text" class="form-control" name="num" placeholder="전화번호를 입력해주세요."/>
                <span style = " text-align: center; " th:if="${#fields.hasErrors('num')}" th:errors="*{num}" ></span>
 
         <!--    <th>아이디:</th>-->
@@ -92,7 +92,6 @@
 </div>
 </body>
 </html>
-
 
 
 

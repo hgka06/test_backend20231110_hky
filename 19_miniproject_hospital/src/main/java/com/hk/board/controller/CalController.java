@@ -185,8 +185,7 @@ public class CalController {
                 .setDate(Integer.parseInt(dto.getMdate().substring(6, 8)));
       updateCalCommand
                 .setHour(Integer.parseInt(dto.getMdate().substring(8, 10)));
-      updateCalCommand
-                .setMin(Integer.parseInt(dto.getMdate().substring(10)));
+
       model.addAttribute("updateCalCommand", updateCalCommand);
       
       return "/calboard/calBoardDetail";
@@ -219,7 +218,6 @@ public class CalController {
       return map;
    }
 }
-
 
 
 
