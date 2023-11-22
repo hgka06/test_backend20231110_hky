@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout3}">
+	  layout:decorate="~{layouts/layout2}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -31,15 +31,13 @@
 		<form th:action="@{/schedule/calMulDel}" method="post"
 			th:object="${deleteCalCommand}" onsubmit="return isCheck()">
 		<table class="table">
-			<col width="50px"/>
             <col width="200px"/>
             <col width="300px"/>
             <col width="200px"/>
             <tr>
-               <th><input type="checkbox" name="all" onclick="allSel(this.checked)"/></th>
                <th>일정</th>
                <th>제목</th>
-               <th>작성일</th>
+               <th>예약일</th>
             </tr>
 			<th:block th:if="${#lists.isEmpty(list)}">
                <tr>
@@ -48,7 +46,6 @@
             </th:block>
             <th:block th:unless="${#lists.isEmpty(list)}">
 				<tr th:each="dto:${list}">
-				<td><input type="checkbox" name="seq" th:value="${dto.seq}"/></td>
 					<td th:text="${@util.toDates(dto.mdate)}"></td>
 				<td>
 					<a th:href="@{/schedule/calBoardDetail(seq=${dto.seq})}" th:text="${dto.title}"></a>	
@@ -58,9 +55,6 @@
 			</th:block>
 			<tr>
                	<td colspan="4">
-                  	<button type="submit" title="일정삭제" class="btn btn-default" >
-                    	<span class="glyphicon glyphicon-trash" ></span>
-                  	</button>
                   	<button type="button" title="달력보기" class="btn btn-default"
                         th:onclick="|location.href='@{/schedule/calendar(year=${session.ymdMap.year},month=${session.ymdMap.month})}'|" >
                     <span class="glyphicon glyphicon-calendar" ></span>

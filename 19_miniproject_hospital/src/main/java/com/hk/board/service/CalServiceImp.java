@@ -76,8 +76,7 @@ public class CalServiceImp implements ICalService{
       String mdate=insertCalCommand.getYear()
                 +Util.isTwo(insertCalCommand.getMonth()+"")
                 +Util.isTwo(insertCalCommand.getDate()+"")
-                +Util.isTwo(insertCalCommand.getHour()+"")
-                +Util.isTwo(insertCalCommand.getMin()+"");
+                +Util.isTwo(insertCalCommand.getHour()+"");
       // 202311151335 12자리
       // 20231181110  11자리....ㅜㅜ
       
@@ -109,8 +108,7 @@ public class CalServiceImp implements ICalService{
       String mdate=updateCalCommand.getYear()
              +Util.isTwo(updateCalCommand.getMonth()+"")
              +Util.isTwo(updateCalCommand.getDate()+"")
-             +Util.isTwo(updateCalCommand.getHour()+"")
-             +Util.isTwo(updateCalCommand.getMin()+""); // 12자리
+             +Util.isTwo(updateCalCommand.getHour()+""); // 12자리
       
       //dto <---command값
       CalDto dto=new CalDto();

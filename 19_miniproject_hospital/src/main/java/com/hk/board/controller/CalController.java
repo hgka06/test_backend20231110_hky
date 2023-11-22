@@ -69,29 +69,29 @@ public class CalController {
    }
    
    @GetMapping(value = "/addCalBoardForm")
-   public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
-      logger.info("일정추가폼이동");
-      System.out.println(insertCalCommand);
-      //addCalBoardfForm 페이지에서 유효값 처리를 위해 insertCalCommand 받고 있기때문에
-      model.addAttribute("insertCalCommand", insertCalCommand);
-      return "/calboard/addCalBoardForm";
-   }
+	public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
+		logger.info("일정추가폼이동");
+		System.out.println(insertCalCommand);
+		//addCalBoardfForm 페이지에서 유효값 처리를 위해 insertCalCommand 받고 있기때문에
+		model.addAttribute("insertCalCommand", insertCalCommand);
+		return "/calboard/addCalBoardForm";
+	}
    
    @PostMapping(value = "/addCalBoard")
-   public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
-                       BindingResult result) throws Exception {
-      logger.info("일정추가하기");
-      System.out.println(insertCalCommand);
-      if(result.hasErrors()) {
-         System.out.println("글을 모두 입력해야 함");
-         return "/calboard/addCalBoardForm";
-      }
-      
-      calService.insertCalBoard(insertCalCommand);
-      
-      return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
-                              +"&month="+insertCalCommand.getMonth();
-   }
+	public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
+							  BindingResult result) throws Exception {
+		logger.info("일정추가하기");
+		System.out.println(insertCalCommand);
+		if(result.hasErrors()) {
+			System.out.println("글을 모두 입력해야 함");
+			return "/calboard/addCalBoardForm";
+		}
+		
+		calService.insertCalBoard(insertCalCommand);
+		
+		return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
+										+"&month="+insertCalCommand.getMonth();
+	}
    
    @GetMapping(value = "/calBoardList")
    public String calBoardList(@RequestParam Map<String, String>map
@@ -185,8 +185,7 @@ public class CalController {
                 .setDate(Integer.parseInt(dto.getMdate().substring(6, 8)));
       updateCalCommand
                 .setHour(Integer.parseInt(dto.getMdate().substring(8, 10)));
-      updateCalCommand
-                .setMin(Integer.parseInt(dto.getMdate().substring(10)));
+
       model.addAttribute("updateCalCommand", updateCalCommand);
       
       return "/calboard/calBoardDetail";

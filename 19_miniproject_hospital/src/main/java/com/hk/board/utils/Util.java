@@ -27,7 +27,7 @@ public class Util {
 				+mdate.substring(4,6)+"-"
 				+mdate.substring(6,8)+" "
 				+mdate.substring(8,10)+":"
-				+mdate.substring(10)+":00";
+				+"00:00";
 		
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-dd HH:mm");

@@ -4,14 +4,13 @@
 <mapper namespace="com.hk.board.mapper.CalMapper">
    <insert id = "insertCalBoard" parameterType="CalDto">
       INSERT INTO checkinfo
-      VALUES (NULL, #{id},#{title},#{content},#{mdate},SYSDATE())   
+      VALUES (NULL, #{id},#{title},#{content},#{mdate},SYSDATE())
    </insert>
  
     <select id="calBoardList" parameterType="Map" resultType="CalDto">
       SELECT seq, id, title, content, mdate, regdate
       FROM checkinfo
-      WHERE SUBSTRING(mdate,1,8) = #{yyyyMMdd}
-   
+      WHERE SUBSTRING(mdate,1,8) = #{yyyyMMdd}   
     </select>
    
    <select id="calBoardDetail" parameterType="int" resultType="CalDto">

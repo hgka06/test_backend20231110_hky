@@ -28,7 +28,7 @@ public class InsertCalCommand {
 	private int date;
 	@NotNull(message = "시간을 입력하세요")
 	private int hour;
-	@NotNull(message = "분을 입력하세요")
+//	@NotNull(message = "분을 입력하세요")
 	private int min;
 	
 	public InsertCalCommand() {
