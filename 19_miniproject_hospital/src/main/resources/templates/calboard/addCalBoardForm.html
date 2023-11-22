@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-     layout:decorate="~{layouts/layout}">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout3}">
 <head>
 <meta charset="UTF-8">
 <title></title>
@@ -72,7 +72,7 @@
             </td>
          </tr>
          <tr>
-            <th>제목</th>
+		<th>제목</th>
             <td>
                <input type="text" name="title" th:field="*{title}"/>
                <span class="errorField" th:if="${#fields.hasErrors('title')}" 
