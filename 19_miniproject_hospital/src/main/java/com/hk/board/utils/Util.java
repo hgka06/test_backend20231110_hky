@@ -15,7 +15,6 @@ import com.hk.board.dtos.CalDto;
 
 @Component
 public class Util {
-	
 	//한자리를 두자리로 변환
 	public static String isTwo(String str) {
 		return str.length()<2?"0"+str:str;	//5 --> "05"  10 --> "10"
@@ -64,8 +63,8 @@ public class Util {
 		}
 		return calList;
 	}
-}
 
+}
 
 
 

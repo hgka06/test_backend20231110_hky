@@ -28,10 +28,10 @@ public class UpdateCalCommand {
 	@NotBlank(message="내용을 입력하세요")
 	private String content;
 
-	public UpdateCalCommand() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+   public UpdateCalCommand() {
+      super();
+      // TODO Auto-generated constructor stub
+   }
 
 	public UpdateCalCommand(int seq, @NotNull(message = "년도를 입력하세요") int year, @NotNull(message = "월을 입력하세요") int month,
 			@NotNull(message = "일을 입력하세요") int date, @NotNull(message = "시간을 입력하세요") int hour,
@@ -48,74 +48,74 @@ public class UpdateCalCommand {
 		this.content = content;
 	}
 
-	public int getSeq() {
-		return seq;
-	}
+   public int getSeq() {
+      return seq;
+   }
 
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
+   public void setSeq(int seq) {
+      this.seq = seq;
+   }
 
-	public int getYear() {
-		return year;
-	}
+   public int getYear() {
+      return year;
+   }
 
-	public void setYear(int year) {
-		this.year = year;
-	}
+   public void setYear(int year) {
+      this.year = year;
+   }
 
-	public int getMonth() {
-		return month;
-	}
+   public int getMonth() {
+      return month;
+   }
 
-	public void setMonth(int month) {
-		this.month = month;
-	}
+   public void setMonth(int month) {
+      this.month = month;
+   }
 
-	public int getDate() {
-		return date;
-	}
+   public int getDate() {
+      return date;
+   }
 
-	public void setDate(int date) {
-		this.date = date;
-	}
+   public void setDate(int date) {
+      this.date = date;
+   }
 
-	public int getHour() {
-		return hour;
-	}
+   public int getHour() {
+      return hour;
+   }
 
-	public void setHour(int hour) {
-		this.hour = hour;
-	}
+   public void setHour(int hour) {
+      this.hour = hour;
+   }
 
-	public int getMin() {
-		return min;
-	}
+   public int getMin() {
+      return min;
+   }
 
-	public void setMin(int min) {
-		this.min = min;
-	}
+   public void setMin(int min) {
+      this.min = min;
+   }
 
-	public String getTitle() {
-		return title;
-	}
+   public String getTitle() {
+      return title;
+   }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+   public void setTitle(String title) {
+      this.title = title;
+   }
 
-	public String getContent() {
-		return content;
-	}
+   public String getContent() {
+      return content;
+   }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+   public void setContent(String content) {
+      this.content = content;
+   }
 
-	@Override
-	public String toString() {
-		return "UpdateCalCommand [seq=" + seq + ", year=" + year + ", month=" + month + ", date=" + date + ", hour="
-				+ hour + ", min=" + min + ", title=" + title + ", content=" + content + "]";
-	}
-	
+   @Override
+   public String toString() {
+      return "UpdateCalCommand [seq=" + seq + ", year=" + year + ", month=" + month + ", date=" + date + ", hour="
+            + hour + ", min=" + min + ", title=" + title + ", content=" + content + "]";
+   }
+   
 }
