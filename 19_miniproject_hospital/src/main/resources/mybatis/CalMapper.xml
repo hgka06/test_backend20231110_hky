@@ -105,7 +105,6 @@
 		ON C.DEPTNO = D.DEPTNO	 
 		WHERE SUBSTR(mdate,1,8)=#{yyyyMMdd}
 	</select>
-   
 </mapper>
 
 
