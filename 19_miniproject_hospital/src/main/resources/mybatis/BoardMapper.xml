@@ -11,9 +11,7 @@
       <id property="regdate"       column="REGDATE" />
 
    </resultMap>
-   
-  
-   
+     
    <select id="getAllList" resultType="boardDto">
       SELECT BOARD_SEQ, ID, TITLE, CONTENT, REGDATE
       FROM BOARDINFO
@@ -28,9 +26,7 @@
      
       WHERE BOARD_SEQ = #{board_seq}
    </select>
-   
-<!--    useGeneratedKeys="true" keyProperty="board_seq" -->
-<!--    :증가된 board_seq값을 BoardDto에 전달 -->
+
    <insert id="insertBoard" parameterType="boardDto"
       useGeneratedKeys="true" keyProperty="board_seq">
       INSERT INTO BOARDINFO
