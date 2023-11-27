@@ -18,8 +18,8 @@
    <h1>일정 추가하기</h1>
    <form th:action="@{/schedule/addCalBoard}" method="post" 
                                     th:object="${insertCalCommand}">
-   <input type="hidden" name="id" th:value="${session.mdto.id}"/>
-      <table class="table">
+	<input type="hidden" name="id" th:value="${session.mdto.id}"/>
+	   <table class="table">
          <tr>
             <th>아이디</th>
                <td>
@@ -69,7 +69,7 @@
          <tr>
             <th>진료과</th>
             <td>
-				<select name="title" class="form-select" aria-label="Default select example">
+				<select name="deptno" class="form-select" aria-label="Default select example">
 			  		<option selected>진료과를 선택하세요</option>
 				  	<option value="1">내과</option>
 				  	<option value="2">심장내과</option>

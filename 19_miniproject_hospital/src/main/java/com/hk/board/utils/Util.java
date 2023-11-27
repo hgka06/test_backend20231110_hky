@@ -55,9 +55,10 @@ public class Util {
 			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
 			if(clist.get(j).getMdate().substring(6,8).equals(d)) {
 				calList+="<p>"
-						+(+clist.get(j).getTitle().length()>7?
-						clist.get(j).getTitle().substring(0,7)+"..":
-						clist.get(j).getTitle())
+//						+(+clist.get(j).getTitle().length()>7?
+//						clist.get(j).getTitle().substring(0,7)+"..":
+//						clist.get(j).getTitle())
+						+(clist.get(j).getDeptno())
 						+"</p>";
 			}
 		}

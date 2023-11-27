@@ -13,7 +13,7 @@ public class ExceptionHandle {
    @ExceptionHandler(Exception.class)
    public String handleEception(Exception e, Model model) {
       logger.error("Exception발생:{}",e.getMessage());
-      model.addAttribute("msg","오류가 발생하여 확이중입니다.");
+      model.addAttribute("msg","오류가 발생하여 확인중입니다.");
       return "error";
    }
 }

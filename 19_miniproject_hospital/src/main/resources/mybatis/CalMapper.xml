@@ -2,26 +2,48 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hk.board.mapper.CalMapper">
-   <insert id = "insertCalBoard" parameterType="CalDto">
+
+ <resultMap type="calDto" id="checkinfoMap">
+		<id property="seq" column="SEQ"/>
+		<result property="id" column="ID"/>
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="mdate" column="MDATE"/>
+		<result property="regdate" column="REGDATE"/>
+		<association property="deptDto" resultMap="deptDtoMap"/>
+	</resultMap>
+	
+	<resultMap type="deptDto" id="deptDtoMap">
+		<result property="deptno" column="DEPTNO"/>
+		<result property="deptname" column="DEPTNAME"/>
+	</resultMap>
+	
+   <insert id = "insertCalBoard" parameterType="calDto">
       INSERT INTO checkinfo
-      VALUES (NULL, #{id},#{title},#{content},#{mdate},SYSDATE())
+      VALUES (NULL, #{id},'title',#{content},#{mdate},SYSDATE(),#{deptno})
    </insert>
  
-    <select id="calBoardList" parameterType="Map" resultType="CalDto">
-      SELECT seq, id, title, content, mdate, regdate
-      FROM checkinfo
-      WHERE SUBSTRING(mdate,1,8) = #{yyyyMMdd}   
-    </select>
+<!--     <select id="calBoardList" parameterType="Map" resultType="calDto"> -->
+<!--       SELECT seq, id, title, content, mdate, regdate -->
+<!--       FROM checkinfo -->
+<!--       WHERE SUBSTRING(mdate,1,8) = #{yyyyMMdd}    -->
+<!--     </select> -->
    
-   <select id="calBoardDetail" parameterType="int" resultType="CalDto">
-      SELECT seq,id,title,content,mdate,regdate
-      FROM checkinfo
+<!--    <select id="calBoardDetail" parameterType="int" resultType="calDto"> -->
+<!--       SELECT seq,id,title,content,mdate,regdate -->
+<!--       FROM checkinfo -->
+<!--       WHERE seq=#{seq} -->
+<!--    </select> -->
+   <select id="calBoardDetail" parameterType="int" resultMap="checkinfoMap">
+      SELECT c.seq, c.id, D.deptname ,c.content,C.MDATE, D.deptname, C.REGDATE
+		FROM checkinfo C JOIN deptinfo D
+		ON C.DEPTNO = D.DEPTNO	
       WHERE seq=#{seq}
    </select>
    
-   <update id="calBoardUpdate" parameterType="CalDto">
+   <update id="calBoardUpdate" parameterType="calDto">
       UPDATE checkinfo
-      SET title= #{title}, content= #{content},
+      SET  content= #{content},
       mdate= #{mdate}, regdate=SYSDATE()
       WHERE seq= #{seq}
    </update>
@@ -33,20 +55,33 @@
       </foreach>
    </delete>
 
-   <select id="calViewList" parameterType="Map" resultType="CalDto">
-      SELECT rn, seq, id, title, content, mdate, regdate
-         FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq, id,title,content, mdate, regdate
-         FROM checkinfo
-         WHERE id = #{id} AND SUBSTR(mdate,1,6)=#{yyyyMM}) cal
-      WHERE rn BETWEEN 1 AND 3
-   </select>
+<!--    <select id="calViewList" parameterType="Map" resultType="calDto"> -->
+<!--       SELECT rn, seq, id, title, content, mdate, regdate, deptno -->
+<!--          FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq, id,title,content, mdate, regdate,deptno -->
+<!--          FROM checkinfo -->
+<!--          WHERE id = #{id} AND SUBSTR(mdate,1,6)=#{yyyyMM}) cal -->
+<!--       WHERE rn BETWEEN 1 AND 3 -->
+<!--    </select> -->
    
-   <select id="getAllList" resultType="CalDto">
-      SELECT rn, seq, id, title, content, mdate, regdate
-         FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq, id,title,content, mdate, regdate
+   <select id="getAllList" parameterType="Map" resultType="calDto">
+      SELECT rn, seq, id, title, content, mdate, regdate, deptno
+         FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq, id,title,content, mdate, regdate,deptno
          FROM checkinfo
          WHERE SUBSTR(mdate,1,6)=#{yyyyMM}) cal
       WHERE rn BETWEEN 1 AND 3
+     
+<!--       SELECT deptname -->
+<!-- 		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, deptname, mdate -->
+<!-- 		FROM checkinfo C JOIN deptinfo D -->
+<!-- 		ON C.DEPTNO = D.DEPTNO	) cal -->
+<!--       	WHERE rn BETWEEN 1 AND 3 AND SUBSTRING(mdate,1,8) = #{yyyyMMdd}; -->
+
+<!-- 		SELECT rn, D.deptname -->
+<!-- 		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, deptname -->
+<!-- 		FROM checkinfo C JOIN deptinfo D -->
+<!-- 		ON C.DEPTNO = D.DEPTNO	) cal -->
+<!--       	WHERE rn BETWEEN 1AND3  -->
+<!--       	SUBSTRING(mdate,1,8) = #{yyyyMMdd} -->
    </select>
   
    
@@ -54,6 +89,23 @@
       SELECT COUNT(*) FROM checkinfo
       WHERE  SUBSTR(mdate,1,8)=#{yyyyMMdd}
    </select>
+   
+
+	
+<!-- 	<select id="checkinfoBydept" parameterType="Map" resultMap="checkinfoMap"> -->
+<!-- 		SELECT C.MDATE, D.deptname, C.REGDATE -->
+<!-- 		FROM checkinfo C JOIN deptinfo D -->
+<!-- 				 ON C.title = D.DEPTNO	  -->
+<!-- 		WHERE D.DEPTNO = C.title	 -->
+<!-- 	</select> -->
+	<select id="checkinfoBydept" parameterType="Map" resultMap="checkinfoMap" >
+<!-- 	<select id="checkinfoBydept" parameterType="Map" resultType="calDto" > -->
+		SELECT c.seq, C.MDATE, D.deptname, C.REGDATE
+		FROM checkinfo C JOIN deptinfo D
+		ON C.DEPTNO = D.DEPTNO	 
+		WHERE SUBSTR(mdate,1,8)=#{yyyyMMdd}
+	</select>
+   
 </mapper>
 
 

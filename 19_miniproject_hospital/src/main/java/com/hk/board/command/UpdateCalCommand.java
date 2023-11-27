@@ -22,7 +22,7 @@ public class UpdateCalCommand {
 	@NotNull(message="분을 입력하세요")
 	private int min;
 	
-	@NotBlank(message="제목을 입력하세요")
+//	@NotBlank(message="제목을 입력하세요")
 	private String title;
 	
 	@NotBlank(message="내용을 입력하세요")
@@ -35,7 +35,7 @@ public class UpdateCalCommand {
 
 	public UpdateCalCommand(int seq, @NotNull(message = "년도를 입력하세요") int year, @NotNull(message = "월을 입력하세요") int month,
 			@NotNull(message = "일을 입력하세요") int date, @NotNull(message = "시간을 입력하세요") int hour,
-			@NotNull(message = "분을 입력하세요") int min, @NotNull(message = "제목을 입력하세요") String title,
+			@NotNull(message = "분을 입력하세요") int min, String title,
 			@NotNull(message = "내용을 입력하세요") String content) {
 		super();
 		this.seq = seq;
