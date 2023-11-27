@@ -4,28 +4,29 @@
 <mapper namespace="com.hk.board.mapper.BoardMapper">
    
    <resultMap type="boardDto" id="boardDtoMap">
-      <id property="boardid"    column="BOARDID" />
+      <id property="board_seq"    column="BOARD_SEQ" />
       <id property="id"          column="ID" />
       <id property="title"       column="TITLE" />
       <id property="content"       column="CONTENT" />
       <id property="regdate"       column="REGDATE" />
 
-      
    </resultMap>
    
   
+   
    <select id="getAllList" resultType="boardDto">
-      SELECT BOARDID, ID, TITLE, CONTENT, REGDATE
+      SELECT BOARD_SEQ, ID, TITLE, CONTENT, REGDATE
       FROM BOARDINFO
       WHERE DELFLAG ='N'
       ORDER BY REGDATE DESC
    </select>
- 
- 
+   
    <select id="getBoard" parameterType="Integer" resultMap="boardDtoMap">
-      SELECT BOARDID, ID, TITLE, CONTENT, REGDATE        
-      FROM BOARDINFO
-      WHERE BOARDID = #{boardid}
+      SELECT BOARD_SEQ, ID, TITLE, CONTENT, REGDATE
+           
+      FROM BOARDINFO 
+     
+      WHERE BOARD_SEQ = #{board_seq}
    </select>
    
 <!--    useGeneratedKeys="true" keyProperty="board_seq" -->
@@ -39,13 +40,13 @@
    <update id="updateBoard" parameterType="boardDto">
       UPDATE BOARDINFO
       SET TITLE=#{title}, CONTENT=#{content}
-      WHERE BOARDID=#{boardid}
+      WHERE BOARD_SEQ=#{board_seq}
    </update>
    
    <update id="mulDel" parameterType="Map">
-      UPDATE BOARDINFO SET DELFLAG='Y' WHERE BOARDID IN
+      UPDATE BOARDINFO SET DELFLAG='Y' WHERE BOARD_SEQ IN
       <foreach collection="seqs" item="board_seq" open="(" close=")" separator=",">
-         #{boardid}
+         #{board_seq}
       </foreach>
    </update>
 </mapper>
