@@ -47,7 +47,6 @@ public class Util {
 		}
 	return str;
 	}
-	
 	//일일별 일정 목록 구하는 기능
 	public static String getCalViewList(int i, List<CalDto> clist) {
 		String d=isTwo(i+""); //1 --> "01" 2자리로 변환
@@ -56,10 +55,10 @@ public class Util {
 			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
 			if(clist.get(j).getMdate().substring(6,8).equals(d)) {
 				calList+="<p>"
-//						+(+clist.get(j).getTitle().length()>7?
-//						clist.get(j).getTitle().substring(0,7)+"..":
-//						clist.get(j).getTitle())
-						+(clist.get(j).getDeptno())
+						+(+clist.get(j).getDeptDto().getDeptname().length()>7?
+						clist.get(j).getDeptDto().getDeptname().substring(0,7)+"..":
+						clist.get(j).getDeptDto().getDeptname())
+//						+(clist.get(j).getDeptno())
 						+"</p>";
 			}
 		}

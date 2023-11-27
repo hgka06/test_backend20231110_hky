@@ -28,7 +28,7 @@ public interface CalMapper {
 	//일일의 일정개수 보여주기
 	public int calBoardCount(String yyyyMMdd);
 	
-	public List<CalDto> getAllList(String yyyyMMdd );
+	public List<CalDto> getAllList(String yyyyMM);
 	
 	
 

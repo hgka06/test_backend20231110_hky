@@ -34,6 +34,7 @@
 <!--       FROM checkinfo -->
 <!--       WHERE seq=#{seq} -->
 <!--    </select> -->
+
    <select id="calBoardDetail" parameterType="int" resultMap="checkinfoMap">
       SELECT c.seq, c.id, D.deptname ,c.content,C.MDATE, D.deptname, C.REGDATE
 		FROM checkinfo C JOIN deptinfo D
@@ -63,18 +64,18 @@
 <!--       WHERE rn BETWEEN 1 AND 3 -->
 <!--    </select> -->
    
-   <select id="getAllList" parameterType="Map" resultType="calDto">
-      SELECT rn, seq, id, title, content, mdate, regdate, deptno
-         FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq, id,title,content, mdate, regdate,deptno
-         FROM checkinfo
-         WHERE SUBSTR(mdate,1,6)=#{yyyyMM}) cal
-      WHERE rn BETWEEN 1 AND 3
+   <select id="getAllList" parameterType="Map" resultMap="checkinfoMap">
+<!--       SELECT rn, seq, id, title, content, mdate, regdate, deptno -->
+<!--          FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq, id,title,content, mdate, regdate,deptno -->
+<!--          FROM checkinfo -->
+<!--          WHERE SUBSTR(mdate,1,6)=#{yyyyMM}) cal -->
+<!--       WHERE rn BETWEEN 1 AND 3 -->
      
-<!--       SELECT deptname -->
-<!-- 		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, deptname, mdate -->
-<!-- 		FROM checkinfo C JOIN deptinfo D -->
-<!-- 		ON C.DEPTNO = D.DEPTNO	) cal -->
-<!--       	WHERE rn BETWEEN 1 AND 3 AND SUBSTRING(mdate,1,8) = #{yyyyMMdd}; -->
+      SELECT mdate, deptname
+		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, deptname, mdate
+		FROM checkinfo C JOIN deptinfo D
+		ON C.DEPTNO = D.DEPTNO	) cal
+      	WHERE rn BETWEEN 1 AND 3 AND SUBSTRING(mdate,1,6) = #{yyyyMM};
 
 <!-- 		SELECT rn, D.deptname -->
 <!-- 		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, deptname -->
