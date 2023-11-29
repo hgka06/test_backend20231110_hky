@@ -56,15 +56,17 @@ public class CalController {
            year = cal.get(Calendar.YEAR)+"";
            month = (cal.get(Calendar.MONTH)+1)+"";
          }
-      
        String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
+       System.out.println("year:"+year+","+month);
        List<CalDto>clist=calService.getAllList(yyyyMM);
        model.addAttribute("clist", clist);
-      System.out.println(clist.get(0));
+      for (CalDto calDto : clist) {
+    	  System.out.println(calDto);		
+	}
       //달력만들기위한 값 구하기
       Map<String, Integer>map=calService.makeCalendar(request);
       model.addAttribute("calMap", map);
-      
+      logger.info("달력보기:calMap"); 
       return "/calboard/calendar";
    }
    
@@ -173,7 +175,7 @@ public class CalController {
       logger.info("일정상세보기");
       
       CalDto dto=calService.calBoardDetail(seq);
-      
+      System.out.println(dto);
       //dto ---> command
       updateCalCommand.setSeq(dto.getSeq());
       updateCalCommand.setDeptno(dto.getDeptDto().getDeptname());
@@ -212,7 +214,7 @@ public class CalController {
    @ResponseBody
    @GetMapping(value = "calCountAjax")
    public Map<String, Integer> calCountAjax(String yyyyMMdd){
-      logger.info("일정개수");
+//      logger.info("일정개수");
       Map<String, Integer>map=new HashMap<>();
      
       int count=calService.calBoardCount(yyyyMMdd);
