@@ -21,7 +21,7 @@
       <form th:action="@{/schedule/calBoardUpdate}" method="post"
            th:object="${updateCalCommand}">         
          <input type="hidden" name="seq" th:field="*{seq}"/>
-         <input type="hidden" name="title" th:field="*{title}"/>
+         <input type="hidden" name="deptno" th:field="*{deptno}"/>
          <table class="table">
             <tr>
                <th>일정 상세보기</th>
@@ -70,50 +70,50 @@
             </tr>
             <tr>
                <th>진료과</th>
-               <td name="deptname">
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'1')}"
+               <td name="deptno">
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'1')}"
                               value="1" selected="selected">내과</span>
                         
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'2')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'2')}"
                               value="2" selected="selected">심장내과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'3')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'3')}"
                               value="3" selected="selected">외과</span>      
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'4')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'4')}"
                               value="4" selected="selected">정형외과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'5')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'5')}"
                               value="5" selected="selected">흉부외과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'6')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'6')}"
                               value="6" selected="selected">성형외과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'7')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'7')}"
                               value="7" selected="selected">산부인과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'8')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'8')}"
                               value="8" selected="selected">소아청소년과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'9')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'9')}"
                               value="9" selected="selected">비뇨의학과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'10')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'10')}"
                               value="10" selected="selected">안과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'11')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'11')}"
                               value="11" selected="selected">신경과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'12')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'12')}"
                               value="12" selected="selected">치과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptname,'13')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'13')}"
                               value="13" selected="selected">피부과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.title,'14')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'14')}"
                               value="14" selected="selected">정신건강의학과</span>
                               
-                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.title,'15')}"
+                        <span th:if="${#strings.equalsIgnoreCase(updateCalCommand.deptno,'15')}"
                               value="15" selected="selected">가정의학과</span>
                      </td>
             </select>                   
@@ -132,10 +132,6 @@
             <tr>
                <td colspan="2">
                   <button type="submit" class="btn btn-default">일정수정</button>
-                  <button type="button" title="일정삭제" class="btn btn-default"
-                        th:onclick="|location.href='@{/schedule/calMulDel(seq=${updateCalCommand.seq})}'|" >
-                    <span class="glyphicon glyphicon-trash" ></span>
-                  </button>
                   <button type="button" title="일정목록" class="btn btn-default"
                         th:onclick="|location.href='@{/schedule/calBoardList}'|" >
                     <span class="glyphicon glyphicon-list" ></span>

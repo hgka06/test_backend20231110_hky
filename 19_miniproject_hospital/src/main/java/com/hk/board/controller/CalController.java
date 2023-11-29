@@ -176,7 +176,7 @@ public class CalController {
       
       //dto ---> command
       updateCalCommand.setSeq(dto.getSeq());
-      updateCalCommand.setTitle(dto.getDeptDto().getDeptname());
+      updateCalCommand.setDeptno(dto.getDeptDto().getDeptname());
       updateCalCommand.setContent(dto.getContent());
       updateCalCommand
                 .setYear(Integer.parseInt(dto.getMdate().substring(0, 4)));
