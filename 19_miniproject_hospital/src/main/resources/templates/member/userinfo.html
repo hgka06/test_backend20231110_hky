@@ -15,16 +15,17 @@
 <body>
 <div layout:fragment="content">
 
-<form action="/user/userinfo" method="post">
+<form action="/user/userinfo" method="post" th:object = "${updateUserCommand}">
+<input type="hidden" name="id" th:value="${session.mdto.id}"/>
    <table class="table" style = " text-align:center; margin-top: 40px;  margin-left:auto; margin-right:auto; width:500px;">
    	
    	
       <tr><th style = "vertical-align : middle;">이름:</th>
-      	<td><input style = "height:40px; width:300px;"  type="text" class="form-control" name="name"  th:placeholder="${session.mdto.name}"/></td>   
+      	<td><input style = "height:40px; width:300px;"  type="text" class="form-control" name="name" th:placeholder="${dto.name}" /></td>   
       </tr>    
               	<!--th:field="*{name}"-->
       <tr><th style = "vertical-align : middle;">전화번호:</th>
-      	<td><input style = "height:40px; width:300px;"  type="text" class="form-control" name="number" th:placeholder="${0+session.mdto.number}"/></td>   
+      	<td><input style = "height:40px; width:300px;"  type="text" class="form-control" name="number" th:placeholder="${0+dto.number}" /></td>   
       </tr>
       
       <tr><th style = "vertical-align : middle;">비밀번호:</th>

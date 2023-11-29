@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 
 import com.hk.board.command.AddUserCommand;
 import com.hk.board.command.LoginCommand;
+import com.hk.board.command.UpdateBoardCommand;
 import com.hk.board.command.UpdateUserCommand;
+import com.hk.board.dtos.BoardDto;
 import com.hk.board.dtos.MemberDto;
 import com.hk.board.mapper.MemberMapper;
 
@@ -74,29 +76,33 @@ public class MemberService {
 
 	public boolean updateUser(UpdateUserCommand updateUserCommand) {
 		
-		MemberDto mdto=new MemberDto();
-	    mdto.setPassword(updateUserCommand.getPassword());
-	    mdto.setName(updateUserCommand.getName());
-	    mdto.setNumber(updateUserCommand.getNum());
+		MemberDto dto=new MemberDto();
+		dto.setId(updateUserCommand.getId());
+		dto.setPassword(passwordEncoder.encode(updateUserCommand.getPassword()));
+	 
+	    dto.setName(updateUserCommand.getName());
+	    dto.setNumber(updateUserCommand.getNumber());
 	    
-	    return memberMapper.updateUser(mdto);
+	    return memberMapper.updateUser(dto);
 	}
 	
+//	
+//	public boolean updateBoard(UpdateBoardCommand updateBoardCommand) {
+//		// command:UI ---> DTO:DB
+//		BoardDto dto = new BoardDto();
+//		dto.setBoard_seq(updateBoardCommand.getBoard_seq());
+//		dto.setTitle(updateBoardCommand.getTitle());
+//		dto.setContent(updateBoardCommand.getContent());
+//		
+//		return boardMapper.updateBoard(dto);
+//	}
 	
-//	public boolean addUser(AddUserCommand addUserCommand) {
-//	      
-//	      MemberDto mdto=new MemberDto();
-//	      mdto.setId(addUserCommand.getId());
-//	      mdto.setName(addUserCommand.getName());
-//	      mdto.setNumber(addUserCommand.getNum());;
-//	      
-//	      //password 암호화하여 저장하자
-//	      mdto.setPassword(passwordEncoder.encode(addUserCommand.getPassword()));
-//	      
-//	 
-//	      
-//	      return memberMapper.addUser(mdto);
-//	   }
+	public MemberDto getUser(String id) {
+		
+	      return memberMapper.getUser(id);
+	   }
+	
+
 }
 
 

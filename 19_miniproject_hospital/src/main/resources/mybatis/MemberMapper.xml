@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hk.board.mapper.MemberMapper">
+
+	
    
    <insert id="addUser" parameterType="memberDto">
          INSERT INTO USERINFO
@@ -23,6 +25,15 @@
       SET NAME=#{name}, NUMBER=#{number}, PASSWORD = #{password}
       WHERE ID=#{id} 
    </update>
+   
+   <select id="getUser" parameterType="String" resultType="memberDto" >
+      SELECT NAME, NUMBER
+           
+      FROM USERINFO 
+     
+      WHERE Id = #{id}
+   </select>
+  
    
 </mapper>
 

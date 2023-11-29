@@ -15,10 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.board.command.AddUserCommand;
 import com.hk.board.command.LoginCommand;
+import com.hk.board.command.UpdateBoardCommand;
 import com.hk.board.command.UpdateUserCommand;
+import com.hk.board.dtos.BoardDto;
+import com.hk.board.dtos.MemberDto;
 import com.hk.board.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 
 
 @Controller
@@ -109,31 +114,48 @@ public class MemberController {
    
    //개인정보 폼 이동
    @GetMapping(value = "/userinfo")
-   public String user() {
-     
+   public String user(HttpServletRequest request,  Model model) {
+	   
+	  HttpSession session=request.getSession();
+	  MemberDto mdto=(MemberDto)session.getAttribute("mdto");
+	   
+	   MemberDto dto = memberService.getUser(mdto.getId());
+	   
+	   model.addAttribute("updateUserCommand", new UpdateUserCommand());
+		// 출력용
+		model.addAttribute("dto", dto);
+
+	   
       return "member/userinfo";
    }
    
+
+   
    //개인정보 수정 
    @PostMapping(value = "/userinfo")
-   public String userinfo(@Validated UpdateUserCommand updateUserCommand,BindingResult result,Model model) {
-	   if(result.hasErrors()) {
-	         System.out.println("회원가입 유효값 오류");
-	         return "member/userinfo";
-	      }
-	      
-	      try {
-	         memberService.updateUser(updateUserCommand);
-	         System.out.println(" 성공");
-	         return "redirect:/";
-	      } catch (Exception e) {
-	         System.out.println("실패");
-	         e.printStackTrace();
-	         return "redirect:userinfo";
-	      }
+   public String userinfo(@Validated UpdateUserCommand updateUserCommand,BindingResult result) {
+	  
+	   memberService.updateUser(updateUserCommand);
+		System.out.println("수정");
+	   return "redirect:/user/userinfo";
 
 	     
 	}
+   
+//   @PostMapping(value = "/boardUpdate")
+//	public String boardUpdate(@Validated UpdateBoardCommand updateBoardCommand, BindingResult result) {
+//
+//		if (result.hasErrors()) {
+//			System.out.println("수정내용을 모두 입력하세요");
+//			return "board/boardDetail";
+//		}
+//
+//		boardService.updateBoard(updateBoardCommand);
+//
+//		return "redirect:/board/boardDetail?board_seq=" + updateBoardCommand.getBoard_seq();
+//		
+//		?board_seq=" + updateBoardCommand.getBoard_seq();
+//	}
    
    
    
