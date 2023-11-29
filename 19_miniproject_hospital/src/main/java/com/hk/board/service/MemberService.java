@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 
 import com.hk.board.command.AddUserCommand;
 import com.hk.board.command.LoginCommand;
+import com.hk.board.command.UpdateUserCommand;
 import com.hk.board.dtos.MemberDto;
 import com.hk.board.mapper.MemberMapper;
 
@@ -30,7 +31,7 @@ public class MemberService {
       MemberDto mdto=new MemberDto();
       mdto.setId(addUserCommand.getId());
       mdto.setName(addUserCommand.getName());
-      mdto.setNumber(addUserCommand.getNum());;
+      mdto.setNumber(addUserCommand.getNum());
       
       //password 암호화하여 저장하자
       mdto.setPassword(passwordEncoder.encode(addUserCommand.getPassword()));
@@ -70,6 +71,32 @@ public class MemberService {
             
       return path;
    }
+
+	public boolean updateUser(UpdateUserCommand updateUserCommand) {
+		
+		MemberDto mdto=new MemberDto();
+	    mdto.setPassword(updateUserCommand.getPassword());
+	    mdto.setName(updateUserCommand.getName());
+	    mdto.setNumber(updateUserCommand.getNum());
+	    
+	    return memberMapper.updateUser(mdto);
+	}
+	
+	
+//	public boolean addUser(AddUserCommand addUserCommand) {
+//	      
+//	      MemberDto mdto=new MemberDto();
+//	      mdto.setId(addUserCommand.getId());
+//	      mdto.setName(addUserCommand.getName());
+//	      mdto.setNumber(addUserCommand.getNum());;
+//	      
+//	      //password 암호화하여 저장하자
+//	      mdto.setPassword(passwordEncoder.encode(addUserCommand.getPassword()));
+//	      
+//	 
+//	      
+//	      return memberMapper.addUser(mdto);
+//	   }
 }
 
 

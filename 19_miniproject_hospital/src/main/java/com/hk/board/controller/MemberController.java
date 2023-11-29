@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.board.command.AddUserCommand;
 import com.hk.board.command.LoginCommand;
+import com.hk.board.command.UpdateUserCommand;
 import com.hk.board.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -82,7 +83,7 @@ public class MemberController {
       return "member/login";
    }
    
- //로그인 실행
+   //로그인 실행
    @PostMapping(value = "/login")
    public String login(@Validated LoginCommand loginCommand
                     ,BindingResult result
@@ -105,6 +106,59 @@ public class MemberController {
       request.getSession().invalidate();
       return "redirect:/";
    }
+   
+   //개인정보 폼 이동
+   @GetMapping(value = "/userinfo")
+   public String user() {
+     
+      return "member/userinfo";
+   }
+   
+   //개인정보 수정 
+   @PostMapping(value = "/userinfo")
+   public String userinfo(@Validated UpdateUserCommand updateUserCommand,BindingResult result,Model model) {
+	   if(result.hasErrors()) {
+	         System.out.println("회원가입 유효값 오류");
+	         return "member/userinfo";
+	      }
+	      
+	      try {
+	         memberService.updateUser(updateUserCommand);
+	         System.out.println(" 성공");
+	         return "redirect:/";
+	      } catch (Exception e) {
+	         System.out.println("실패");
+	         e.printStackTrace();
+	         return "redirect:userinfo";
+	      }
+
+	     
+	}
+   
+   
+   
+   
+//   @PostMapping(value = "/addUser")
+//   public String addUser(@Validated AddUserCommand addUserCommand
+//                      ,BindingResult result,Model model) {
+//      System.out.println("회원가입하기");
+//      
+//      if(result.hasErrors()) {
+//         System.out.println("회원가입 유효값 오류");
+//         return "member/addUserForm";
+//      }
+//      
+//      try {
+//         memberService.addUser(addUserCommand);
+//         System.out.println("회원가입 성공");
+//         return "redirect:/";
+//      } catch (Exception e) {
+//         System.out.println("회원가입실패");
+//         e.printStackTrace();
+//         return "redirect:addUser";
+//      }
+//
+//   }
 
    
 }

@@ -12,6 +12,8 @@ public interface MemberMapper {
    public String idChk(String id);
    
    public MemberDto loginUser(String id);
+
+   public boolean updateUser(MemberDto mdto);
    
    
 }

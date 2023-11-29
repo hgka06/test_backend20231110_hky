@@ -18,5 +18,11 @@
       WHERE ID=#{id}   
    </select>
    
+   <update id="updateUser" parameterType="memberDto">
+      UPDATE USERINFO
+      SET NAME=#{name}, NUMBER=#{number}, PASSWORD = #{password}
+      WHERE ID=#{id} 
+   </update>
+   
 </mapper>
 
