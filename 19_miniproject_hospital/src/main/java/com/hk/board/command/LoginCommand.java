@@ -34,7 +34,7 @@ public class LoginCommand {
    }
 
    public LoginCommand(@NotBlank(message = "아이디를 입력해주세요") String id,
-         @NotBlank(message = "패스워드를 입력해주세요") @Length(min = 8, max = 16, message = "8자리이상, 16자이하로 입력하세요") String password) {
+         @NotBlank(message = "패스워드를 입력해주세요") String password) {
       super();
       this.id = id;
       this.password = password;
