@@ -120,14 +120,23 @@ public class BoardController {
 
 		return "redirect:/board/boardDetail?board_seq=" + updateBoardCommand.getBoard_seq();
 	}
+	
+	/*
+	 * @PostMapping(value = "/replyBoard") public String replyBoard(Model model,
+	 * AnsDto dto) { boolean isS = ansService.replyBoard(dto); if(isS) { return
+	 * "redirect:boardList.do"; }else { model.addAttribute("msg","답글추가실패"); return
+	 * "error"; }
+	 * 
+	 * }
+	 */
+	
+	
+	
+	
 
 	@RequestMapping(value = "mulDel", method = { RequestMethod.POST, RequestMethod.GET })
 	public String mulDel(@Validated DelBoardCommand delBoardCommand, BindingResult result, Model model) {
-		/*
-		 * if (result.hasErrors()) { System.out.println("최소하나 체크하기"); List<BoardDto>
-		 * list = boardService.getAllList(); model.addAttribute("list", list); return
-		 * "board/boardlist"; }
-		 */
+		
 		boardService.mulDel(delBoardCommand.getSeq());
 		System.out.println("글삭제함");
 		return "redirect:/board/boardList";
