@@ -60,7 +60,7 @@ public class CalController {
        String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
        List<CalDto>clist=calService.getAllList(yyyyMM);
        model.addAttribute("clist", clist);
-      
+      System.out.println(clist.get(0));
       //달력만들기위한 값 구하기
       Map<String, Integer>map=calService.makeCalendar(request);
       model.addAttribute("calMap", map);
@@ -69,29 +69,29 @@ public class CalController {
    }
    
    @GetMapping(value = "/addCalBoardForm")
-   public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
-      logger.info("일정추가폼이동");
-      System.out.println(insertCalCommand);
-      //addCalBoardfForm 페이지에서 유효값 처리를 위해 insertCalCommand 받고 있기때문에
-      model.addAttribute("insertCalCommand", insertCalCommand);
-      return "/calboard/addCalBoardForm";
-   }
+	public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
+		logger.info("일정추가폼이동");
+		System.out.println(insertCalCommand);
+		//addCalBoardfForm 페이지에서 유효값 처리를 위해 insertCalCommand 받고 있기때문에
+		model.addAttribute("insertCalCommand", insertCalCommand);
+		return "/calboard/addCalBoardForm";
+	}
    
    @PostMapping(value = "/addCalBoard")
-   public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
-                       BindingResult result) throws Exception {
-      logger.info("일정추가하기");
-      System.out.println(insertCalCommand);
-      if(result.hasErrors()) {
-         System.out.println("글을 모두 입력해야 함");
-         return "/calboard/addCalBoardForm";
-      }
-      
-      calService.insertCalBoard(insertCalCommand);
-      
-      return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
-                              +"&month="+insertCalCommand.getMonth();
-   }
+	public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
+							  BindingResult result) throws Exception {
+		logger.info("일정추가하기");
+		System.out.println(insertCalCommand);
+		if(result.hasErrors()) {
+			System.out.println("글을 모두 입력해야 함");
+			return "/calboard/addCalBoardForm";
+		}
+		
+		calService.insertCalBoard(insertCalCommand);
+		
+		return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
+										+"&month="+insertCalCommand.getMonth();
+	}
    
    @GetMapping(value = "/calBoardList")
    public String calBoardList(@RequestParam Map<String, String>map
@@ -118,9 +118,10 @@ public class CalController {
       String yyyyMMdd=map.get("year")
                    +Util.isTwo(map.get("month"))
                    +Util.isTwo(map.get("date"));
-      List<CalDto> list= calService.calBoardList(yyyyMMdd);
-      System.out.println(list.size());
+//      List<CalDto> list= calService.calBoardList(yyyyMMdd);
       System.out.println(yyyyMMdd);
+        List<CalDto> list= calService.checkinfoBydept(yyyyMMdd);
+      System.out.println(list.size());
       model.addAttribute("list", list);
       
       return "/calboard/calBoardList";
@@ -175,7 +176,7 @@ public class CalController {
       
       //dto ---> command
       updateCalCommand.setSeq(dto.getSeq());
-      updateCalCommand.setTitle(dto.getTitle());
+      updateCalCommand.setTitle(dto.getDeptDto().getDeptname());
       updateCalCommand.setContent(dto.getContent());
       updateCalCommand
                 .setYear(Integer.parseInt(dto.getMdate().substring(0, 4)));
@@ -192,7 +193,7 @@ public class CalController {
    }
    
    @PostMapping(value = "/calBoardUpdate")
-   public String calBoardUpdate(@Validated UpdateCalCommand updateCalCommand
+   public String calBoardUpdate(@Validated UpdateCalCommand updateCalCommand, int seq
                         ,BindingResult result
                         ,Model model) {
       logger.info("일정 수정하기");
@@ -204,7 +205,8 @@ public class CalController {
       
       calService.calBoardUpdate(updateCalCommand);
       
-      return "redirect:/schedule/calBoardDetail?seq="+updateCalCommand.getSeq();
+      return "redirect:/schedule/calBoardDetail?seq="+updateCalCommand.getSeq();      
+
    }
    
    @ResponseBody

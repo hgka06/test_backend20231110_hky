@@ -83,7 +83,7 @@ public class CalServiceImp implements ICalService{
       //command --> dto 값 복사 
       CalDto dto=new CalDto();
       dto.setId(insertCalCommand.getId());
-      dto.setTitle(insertCalCommand.getTitle());
+      dto.setDeptno(insertCalCommand.getDeptno());
       dto.setContent(insertCalCommand.getContent());
       dto.setMdate(mdate);
       
@@ -93,8 +93,10 @@ public class CalServiceImp implements ICalService{
    }
 
    @Override
-   public List<CalDto> calBoardList( String yyyyMMdd) {
-      return calMapper.calBoardList(yyyyMMdd);
+   public List<CalDto> checkinfoBydept(String yyyyMMdd ){
+//   public List<CalDto> calBoardList( String yyyyMMdd) {
+	   System.out.println("service:"+yyyyMMdd);
+      return calMapper.checkinfoBydept(yyyyMMdd);
    }
 
    @Override
@@ -113,7 +115,7 @@ public class CalServiceImp implements ICalService{
       //dto <---command값
       CalDto dto=new CalDto();
       dto.setSeq(updateCalCommand.getSeq());
-      dto.setTitle(updateCalCommand.getTitle());
+//      dto.setTitle(updateCalCommand.getTitle());
       dto.setContent(updateCalCommand.getContent());
       dto.setMdate(mdate);
       
@@ -137,12 +139,12 @@ public class CalServiceImp implements ICalService{
       return calMapper.calBoardCount(yyyyMMdd);
    }
    
-  
 
-   @Override
-   public List<CalDto> getAllList(String yyyyMMdd) {
-      // TODO Auto-generated method stub
-      return calMapper.getAllList(yyyyMMdd);
-   }
+	@Override
+	public List<CalDto> getAllList(String yyyyMMdd) {
+		// TODO Auto-generated method stub
+		return calMapper.getAllList(yyyyMMdd);
+		
+	}
 
 }

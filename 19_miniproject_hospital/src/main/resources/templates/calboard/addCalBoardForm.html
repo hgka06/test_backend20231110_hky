@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-     layout:decorate="~{layouts/layout2}">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout2}">
 <head>
 <meta charset="UTF-8">
 <title></title>
@@ -18,8 +18,8 @@
    <h1>일정 추가하기</h1>
    <form th:action="@{/schedule/addCalBoard}" method="post" 
                                     th:object="${insertCalCommand}">
-   <input type="hidden" name="id" th:value="${session.mdto.id}"/>
-      <table class="table">
+	<input type="hidden" name="id" th:value="${session.mdto.id}"/>
+	   <table class="table">
          <tr>
             <th>아이디</th>
                <td>
@@ -69,24 +69,24 @@
          <tr>
             <th>진료과</th>
             <td>
-            <select name="title" class="form-select" aria-label="Default select example">
-                 <option selected>진료과를 선택하세요</option>
-                 <option value="1">내과</option>
-                 <option value="2">심장내과</option>
-                 <option value="3">외과</option>
-                 <option value="4">정형외과</option>
-                 <option value="5">흉부외과</option>
-                 <option value="6">성형외과</option>
-                 <option value="7">산부인과</option>
-                 <option value="8">소아청소년과</option>
-                 <option value="9">비뇨의학과</option>
-                 <option value="10">안과</option>
-                 <option value="11">신경과</option>
-                 <option value="12">치과</option>
-                 <option value="13">피부과</option>
-                 <option value="14">정신건강의학과</option>
-                 <option value="15">가정의학과</option>
-            </select>
+				<select name="deptno" class="form-select" aria-label="Default select example">
+			  		<option selected>진료과를 선택하세요</option>
+				  	<option value="1">내과</option>
+				  	<option value="2">심장내과</option>
+				  	<option value="3">외과</option>
+				  	<option value="4">정형외과</option>
+				  	<option value="5">흉부외과</option>
+				  	<option value="6">성형외과</option>
+				  	<option value="7">산부인과</option>
+				  	<option value="8">소아청소년과</option>
+				  	<option value="9">비뇨의학과</option>
+				  	<option value="10">안과</option>
+				  	<option value="11">신경과</option>
+				  	<option value="12">치과</option>
+				  	<option value="13">피부과</option>
+				  	<option value="14">정신건강의학과</option>
+				  	<option value="15">가정의학과</option>
+				</select>
             </td>
          </tr>
          <tr>
