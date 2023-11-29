@@ -12,15 +12,39 @@
 
    </resultMap>
    
-  
+   <select id = "getPCount" resultType = "int">
+   		SELECT CEIL(COUNT(*)/10) pageCount
+		FROM BOARDINFO
+   </select>
    
-   <select id="getAllList" resultType="boardDto">
+   
+  <select id="getAllList"   parameterType = "Map" resultType="boardDto">
+      SELECT rn, BOARD_SEQ, id, title, content, regdate
+	  FROM(
+		SELECT ROW_NUMBER() OVER(ORDER BY REGDATE DESC) rn, BOARD_SEQ, id, title, 
+			content, regdate, delflag  
+		from BOARDINFO WHERE DELFLAG ='N') a
+      <where>
+		 	<choose>
+		 		<when test = "BOARD_SEQ!=null">
+		 			BOARD_SEQ = #{board_seq}
+		 		</when>
+		 		<otherwise>
+		 			 CEIL(rn/10) = #{pnum}
+		 		</otherwise>
+		 	</choose>
+		</where>
+      
+      
+   </select>
+   
+  <!--  <select id="getAllList"   resultType="boardDto">
       SELECT BOARD_SEQ, ID, TITLE, CONTENT, REGDATE
       FROM BOARDINFO
       WHERE DELFLAG ='N'
       ORDER BY REGDATE DESC
    </select>
-   
+    -->
    <select id="getBoard" parameterType="Integer" resultMap="boardDtoMap">
       SELECT BOARD_SEQ, ID, TITLE, CONTENT, REGDATE
            
@@ -49,6 +73,8 @@
          #{board_seq}
       </foreach>
    </update>
+   
+
 </mapper>
 
 

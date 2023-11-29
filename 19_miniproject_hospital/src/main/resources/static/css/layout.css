@@ -9,15 +9,12 @@
 
 .test2{
    margin-top: 25px; 
-   margin-left : 1350px;
+   margin-left : 1300px;
 
    }
    
-.test2 a{
-   margin: 34px;
-   /*text-align : center;*/
+ 
 
-   }   
 
 .btn{
    margin : 3px;
@@ -44,6 +41,21 @@
 .hos{
 
    height:480px; 
+   width : 1500px;
+   
+}
+
+.hosp{
+
+    height:170px; 
+   width : 1500px;
+   margin-top:40px;
+   
+}
+
+.hospt{
+
+   height:170px; 
    width : 1500px;
    
 }
@@ -76,9 +88,14 @@ header{
 #container{
    
    width: 1100px;
-   margin: 0 auto;
+  margin: 0 auto;
+  
    font-size:12px;
    }
+ 
+#content{
+	 margin-left:0;
+}
    
 #inputcontainer{
    height: 40px;
@@ -88,7 +105,7 @@ header{
 }
 
 #loginbutton{
-   height: 40px;
+   height: 10px;
    width: 30px;
    margin: 0auto;
     font-size:12px;
@@ -100,5 +117,18 @@ header{
 	width:350px;  
 	margin:auto;
 }
+
+
+.contentk{
+	margin: 0 auto; 
+
+	}
+	
+#containerk{
+ 
+   height:100px;
+   margin: 0 auto;
+   }
+   
 
 

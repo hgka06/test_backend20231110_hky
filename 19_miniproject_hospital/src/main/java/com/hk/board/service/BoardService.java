@@ -1,10 +1,14 @@
 package com.hk.board.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartRequest;
@@ -26,9 +30,18 @@ public class BoardService {
 	
 	
 	//글목록 조회
-	public List<BoardDto> getAllList(){
-		return boardMapper.getAllList();
+	public List<BoardDto> getAllList(String pnum){
+		Map<String, String>map=new HashMap<String, String>();
+		map.put("pnum", pnum);
+		return boardMapper.getAllList(map);
 	}
+	
+	public int getPCount() {
+//		int count = 0;
+		
+		return boardMapper.getPCount();
+	}
+
 	
 	//글 추가, 파일업로드및 파일정보 추가
 		@Transactional
@@ -52,8 +65,8 @@ public class BoardService {
 		}
 		
 		// 상세내용 조회
-		public BoardDto getBoard(int board_seq) {
-			return boardMapper.getBoard(board_seq);
+		public BoardDto getBoard(int board_seq, String id) {
+			return boardMapper.getBoard(board_seq, id);
 		}
 		
 		// 수정하기
@@ -65,6 +78,10 @@ public class BoardService {
 			dto.setContent(updateBoardCommand.getContent());
 			
 			return boardMapper.updateBoard(dto);
+		}
+		
+		public boolean mulDel(String[] seqs) {
+			return boardMapper.mulDel(seqs);
 		}
 
 	

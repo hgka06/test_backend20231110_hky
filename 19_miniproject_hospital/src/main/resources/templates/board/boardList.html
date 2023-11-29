@@ -27,24 +27,37 @@
 <body>
 <div layout:fragment="content">
 <div id="container">
-<h1>게시판 목록</h1>
+<!--<h1>게시판 목록</h1>-->
 <form action="/board/mulDel" method="post" th:object="${delBoardCommand}">
-   <table class="table">
-      <tr>
-         <th>NO.</th>
-         <th>작성자</th>
-         <th>제목</th>
-         <th>작성일</th>
+   <table class="table" style = "text-align:center; ">
+   		<col width="80px"/>
+        <col width="120px"/>
+        <col width="200px"/>
+        <col width="120px"/>
+        <col width="80px"/>
+        
+        <tr>   
+			<button style = "margin-top:20px; margin-left:950px; margin-bottom:20px;" type="button" class="btn" th:onclick = "|location.href='@{/board/boardInsert}'|">글추가</button>
+        </tr>
+    
+      <tr>      
+         <th style = "text-align:center; background-color:aliceblue;">NO.</th>
+         <th style = "text-align:center;background-color:aliceblue;">작성자</th>
+         <th style = "text-align:center;background-color:aliceblue;">제목</th>
+         <th style = "text-align:center;background-color:aliceblue;">작성일</th>
+         <th style = "text-align:center;background-color:aliceblue;">처리</th>
       </tr>
+ 
       <th:block th:if="${#lists.isEmpty(list)}">
          <tr>
-            <td colspan="4" style="text-align: center;" >---작성된 글이 없습니다.---
+            <td colspan="5" style="text-align: center;" >---작성된 글이 없습니다.---
             <button type="button" class="btn" th:onclick = "|location.href='@{/board/boardInsert}'|">글추가</button>
             </td>
             
          </tr>
       </th:block>
       <th:block th:unless="${#lists.isEmpty(list)}">
+      	
          <tr th:each="dto:${list}">
            <td th:text = "${dto.board_seq}"></td>
             <td th:text="${dto.id}"></td>
@@ -53,14 +66,47 @@
                   th:text="${dto.title}"></a>
             </td>
             <td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
+            <td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
          </tr>
          <tr>
-            <td colspan="4">
-               <button type="button" class="btn" th:onclick = "|location.href='@{/board/boardInsert}'|">글추가</button>
-              
-              
+            <td colspan="5" >
+     		 <nav>
+	              <ul class="pagination">
+	                <li ><a th:href="@{/board/boardList(pnum=${pMap.prePageNum})}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+	                <th:block th:each="i:${#numbers.sequence(pMap.startPage,pMap.endPage)}">
+	                   <li  th:class="${session.pnum} == ${i} ? 'active':''">
+	                   	<a th:text = "${i}" th:href="@{/board/boardList(pnum=${i})}"><span class="sr-only">(current)</span></a>
+	                   	</li>
+	                </th:block> 
+	                <li ><a th:href="@{/board/boardList(pnum=${pMap.nextPageNum})}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+	              </ul>
+	            </nav>
+      
+      
+      
+              <!-- <nav aria-label="Page navigation" style = "margin-top:20px;">
+				  <ul class="pagination">
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    <li class="page-item"><a class="page-link" href="#">1</a></li>
+				    <li class="page-item active" aria-current="page">
+				      <span class="page-link">2</span>
+				    </li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>-->
+                          
             </td>
          </tr>
+
       </th:block>
    </table>
 </form>

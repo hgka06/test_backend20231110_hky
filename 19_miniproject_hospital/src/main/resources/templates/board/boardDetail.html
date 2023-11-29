@@ -48,11 +48,21 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2">
-				<button type="submit" class="btn">수정</button>
-				<button type="button" class="btn">삭제</button>
-				<button type="button" class="btn"
-				 th:onclick="|location.href='@{/board/boardList}'|">목록</button>
+			<td colspan="2" style = "text-align:center;">
+				
+			
+				<th:block th:if="${session.mdto.id == dto.id}">
+					<button type="submit" class="btn">수정</button>	
+					<button type="button" class="btn"
+				 		th:onclick="|location.href='@{/board/boardList}'|">목록</button>			
+					<button type="button" class="btn"
+						 th:onclick="|location.href='@{/board/mulDel(seq=${dto.board_seq})}'|">삭제</button>
+				</th:block>
+				
+				<th:block th:unless="${session.mdto.id == dto.id}">
+					<button type="button" class="btn"
+				 		th:onclick="|location.href='@{/board/boardList}'|">목록</button>
+				</th:block>		 
 			</td>
 		</tr>
 	</table>
